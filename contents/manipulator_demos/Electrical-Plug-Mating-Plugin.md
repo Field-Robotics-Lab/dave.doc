@@ -42,7 +42,7 @@ A video that demonstrates the functionality of this plugin is provided [here](ht
 # Plugin Operation
 For the plug to mate with the socket, it must be inserted with the correct alignment and pushed with sufficient force.  Similarly, for it to be removed, it must be pulled with sufficient force.  Plugin parameters are specified through the SDF parameters as follows.
 
-```xacro
+```
 <plugin name="plug_and_socket" filename="libplugAndSocketPlugin.so">
   <socketTubeLink>socket</socketTubeLink>
   <sensorPlateLink>sensor_plate</sensorPlateLink>

@@ -28,7 +28,7 @@ Upon launching the simulation, the "grabbable bar" and RexRov vehicle will be si
 
 The bar in this image is partially submerged in the bottom "silt".  The effect is achieved by shifting the visual element of the model's link in the positive Z direction by 0.1 meters (approximately 4 inches).  The model itself is provided in the `dave_object_models` ROS package as the `occluded_sand_heightmap` model.
 
-```xacro
+```
 <link name="link">
   <collision name="ground">
     <pose>0 0 0 0 0 0</pose>
@@ -57,7 +57,7 @@ Upon launch of the simulation, a large cinderblock is located to the left of the
 
 Unlike terrain, occlusion cannot be implemented on models such as this one with a linear shift of the visual element.  Rather, visual occlusion on all sides is achieved by increasing the scale of the visual model as indicated in the following snippet from the `dave_object_models/mossy_cinder_block` model.
 
-```xacro
+```
 <link>
   <visual name="visual">
     <geometry>
@@ -108,7 +108,7 @@ The model must contain a collision element in order to calculate its interaction
 
 The motion damping is implemented via the gazebo_mud plugin, which creates a temporary artificial joint between the mud object and all links which are tagged to interact with the mud, and a contact sensor.
 
-```xacro
+```
 <link name="link">
    …
   <sensor name="mud_contact" type="contact">
