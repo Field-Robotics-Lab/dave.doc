@@ -19,7 +19,9 @@ baseurl: "/dave.doc" # the subpath of your site, e.g. /blog
 url: "https://field-robotics-lab.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 
 permalink: pretty
-include: ["contents/", "contents/dave_models/", "contents/images/", "contents/installation/"]
+include: ["contents/", "contents/dave_models/", "contents/images/", "contents/installation/",
+          "contents/dave_env/", "contents/manipulator_demos/", "contents/integrated_worlds/"
+          ]
 
 # Regression tests
 # By default, the pages in /docs/tests are excluded when the ste is built.
@@ -66,7 +68,7 @@ aux_links:
     - "https://github.com/Field-Robotics-Lab/dave"
 
 # Makes Aux links open in a new tab. Default is false
-aux_links_new_tab: false
+aux_links_new_tab: true
 
 # Sort order for navigation links
 # nav_sort: case_insensitive # default, equivalent to nil
