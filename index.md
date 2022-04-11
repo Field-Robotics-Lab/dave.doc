@@ -13,12 +13,15 @@ Dave is a simulation environment to support the rapid testing and evaluation of 
 ## Quick Start
 
 * For a high-level overview of the project, see the release highlight videos:
+    * [Release 4.3.1 Highlight Video, March 2022](https://www.youtube.com/watch?v=5HixvTjXzsg)
+
+      [![Release 4.3.1 Highlight Video](https://user-images.githubusercontent.com/7955120/160326859-5e360b2b-c45f-4900-9750-6803cce6fa46.png)](https://www.youtube.com/watch?v=5HixvTjXzsg)
+
     * [Release 2.0.0 Highlight Video, September 2020](https://vimeo.com/462024036)
         * Narrated version of the [Electrical Mating](https://vimeo.com/463124725) demonstration.
     * [Release 1.0.0 Highlight Video, June 2020](https://vimeo.com/426414758).
 * For an overview of what is included in the most recent release, see the [Changelog](https://github.com/Field-Robotics-Lab/dave/blob/master/Changelog.md)
-* To review the project plans and priorities for future development efforts consider submitting an issue or pull request.
-* To try the simulation, follow the [Installation Tutorial](/dave/contents/installation/Installation).
+* To try the simulation, follow the [Installation Tutorial](contents/installation/Installation).
 
 ## Project Objective
 
@@ -45,7 +48,7 @@ Step-by-step guides to illustrate working examples how to accomplish certain tas
 Dave depends upon ROS Noetic and Gazebo 11 - with community support for previous versions of ROS and Gazebo.  The project may be installed directly on your host or run using Docker.
 
 * Check to make sure you meet the [System Requirements](contents/installation/System-Requirements).
-* Follow the [Installation Tutorials](/dave/contents/installation/Installation) to set up your system.
+* Follow the [Installation Tutorials](contents/installation/Installation) to set up your system.
 
 ## Dave Models
 
@@ -70,15 +73,23 @@ Dave depends upon ROS Noetic and Gazebo 11 - with community support for previous
 
 ## Perception and Sensing
 
-* [Multibeam Forward Looking Sonar](contents/Multibeam-Forward-Looking-Sonar)
-* [Doppler Velocity Logger Examples](contents/whn_dvl_examples)
-    * [DVL Water Tracking and Current Profiling](contents/DVL-Water-Tracking)
-    * [DVL Seabed Gradient Estimation](contents/DVL-Seabed-Gradient)
-* Sensor Tutorials:
-    * [USBL Tutorial](contents/usbl_tutorial)
+* [Multibeam Forward Looking Sonar](/dave/contents/dave_sensors/Multibeam-Forward-Looking-Sonar)
+* [Doppler Velocity Logger](/dave/contents/dave_sensors/whn_dvl_examples)
+    * [DVL Water Tracking and Current Profiling](/dave/contents/dave_sensors/DVL-Water-Tracking)
+    * [DVL Seabed Gradient Estimation](/dave/contents/dave_sensors/DVL-Seabed-Gradient)
+* [3D Underwater Lidar](/dave/contents/dave_sensors/3D-Underwater-Lidar)
+* [Ultra-Short Base-Line](/dave/contents/dave_sensors/usbl_tutorial)
+* [Underwater Camera](/dave/contents/dave_sensors/Underwater-Camera-Roadmap)
+
+## Ocean Environmental Models
+
+* [Ocean Current Models](/dave/contents/dave_env/Ocean-Current):  A plugin for constant/stratified ocean current with Gauss-Markov model definitions.
+* [Bathymetry generation and auto spawning](/dave/contents/dave_env/Bathymetry-Integration): A plugin that automatically spawns and removes bathymetry grids converted preliminarily from NOAA data.
+* [Occlusion](/dave/contents/dave_env/Occlusion): An example of bottom occlusion due to silt or object occlusion due to marine growth.
 
 ## Subsea Manipulator Models and Manipulation Feature Demonstrations
 
+* [Gamepad Teleoperation Mapping](contents/Logitech-F310-Gamepad-Mapping): Default mapping of gamepad interface to thruster allocation and manipulators.
 * [Manipulator-Models](contents/Manipulator-Models)
 * [Electrical Mating Plugin](contents/Electrical-Plug-Mating-Plugin): Youssef's GSoC demo of a custom plugin to implement the subsea mating of an electrical connector.  The plugin implements constraints on alignment and forces necessary to complete the manipulation.
 * [BOP panel manipulation mission](contents/BOP-Panel-Manipulation-Mission): Implementing the blowout preventer panel example from the UUV Simulator.
@@ -87,14 +98,11 @@ Dave depends upon ROS Noetic and Gazebo 11 - with community support for previous
 * [Retrieving a bar from the seafloor](contents/Teleop-Bar-Retrieval): Coordinated telecoperation of vehicle and manipulator.
 * [Bimanual Manipulation Example](contents/Bimanual-Manipulation-Setup-and-Examples): Equipping the RexROV with dual Oberon7s.
 
-## Ocean Environmental Models
-
-* [Ocean Current Models](contents/Ocean-Current):  A plugin for constant/stratified ocean current with Gauss-Markov model definitions.
-* [Bathymetry generation and auto spawning](contents/Bathymetry-Integration): A plugin that automatically spawns and removes bathymetry grids converted preliminarily from NOAA data.
-* [Occlusion](contents/Occlusion): An example of bottom occlusion due to silt or object occlusion due to marine growth.
-
 ## Navigation system design
 * [Terrain Aided Navigation (TAN) Senarios](contents/Terrain-Aided-Navigation-(TAN)-Senarios)
+
+## Integrated Scenarios
+* [Integrated World](contents/Integrated-World)
 
 # Notes and Sandboxes
 

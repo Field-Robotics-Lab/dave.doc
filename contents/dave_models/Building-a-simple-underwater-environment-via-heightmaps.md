@@ -28,7 +28,7 @@ First, we'll need to find or create a dataset that will represent the seafloor. 
 
 Here's an example using bathymetry data from the Santorini Island area.
 
-[[/images/santorini_heightmap.jpg|alt=Simple seafloor from heightmap]]
+![Simple seafloor from heightmap](../images/santorini_heightmap.jpg)
 
 For this example, we will use the region around Santorini Island, available from [EMODNet](https://portal.emodnet-bathymetry.eu/).  On the "downloads" sidebar, click on "High resolution areas" and find the appropriate area to download.  This site uses a proprietary format, .emo,  that is not currently supported by GDAL.  Fortunately, the format can be read as a .csv and manually manipulated into the supported XYZ raster format with little effort.  We just extract the longitude, latitude, and average depth fields and label the appropriate columns as X, Y, Z.  Since the depth dimensions were given as positive values and the Z input needs to be an elevation, we also need to swap the signs on the Z column values.  We'll save this as `269_Santorini.csv`.
 

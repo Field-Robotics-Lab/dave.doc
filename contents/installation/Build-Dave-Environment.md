@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 404
+title: Build Dave Environment
 nav_exclude: true
 ---
 
@@ -44,4 +44,6 @@ If the simulator does not close promptly with Ctrl-C, you can use the command `p
 
 ![uuv_reference_view](../images/uuv_reference_view.png)
 
-More details are discussed at [uuv_simulator_reference](/dave/contents/installation/uuv_simulator_reference).
+More details are discussed at [uuv_simulator_reference](/dave/contents/uuv_simulator_reference).
+
+## Next: [Try out some other tutorials](https://field-robotics-lab.github.io/dave.doc/)

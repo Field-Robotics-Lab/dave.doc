@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 404
+title: Install on Windows using WSL2
 nav_exclude: true
 ---
 

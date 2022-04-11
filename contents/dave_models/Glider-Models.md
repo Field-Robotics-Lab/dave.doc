@@ -15,6 +15,14 @@ The following launch file starts the ocean world and adds each of the three glid
 ```
 roslaunch dave_demo_launch dave_gliders_visual_demo.launch paused:=true
 ```
+
+Alternatively, use this launch file which has the same functionality, but spawns the gliders closer together for ease of GUI navigation:
+
+```
+roslaunch dave_robot_launch glider_collection.launch paused:=true
+```
+
+
 To see each glider, expand the `Models` on the left side panel of the Gazebo window and right click the glider name and click `Move To`
 
 ![image](https://user-images.githubusercontent.com/7955120/139202251-cf9d9000-3b84-4502-bd56-912ec8eff33e.png)

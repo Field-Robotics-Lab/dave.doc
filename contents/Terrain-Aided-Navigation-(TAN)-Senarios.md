@@ -80,7 +80,7 @@ A Multibeam Echosounder (MBES; Multibeam Sonar) measurement can be used to obtai
       - NVIDIA CUDA core GPU parallelization
         - 10Hz refresh rate with 10m range
    - Tutorials
-     - [Multibeam Forward-Looking Sonar Wiki](https://github.com/Field-Robotics-Lab/dave/wiki/Multibeam-Forward-Looking-Sonar)
+     - [Multibeam Forward-Looking Sonar Wiki](dave_sensors/Multibeam-Forward-Looking-Sonar)
 
 
 #### 3.2 Utilizing DVL Sensor for Bathymery gradient estimation
