@@ -10,7 +10,7 @@ The uuv_simulator includes the [gazebo_ros_image_sonar.cpp](https://github.com/u
 
 These notes are an attempt to describe both the plugin interface as well as the methods used in the implementation.
 
-See [fls_model_standalone](fls_model_standalone) for a working example.
+See [fls_model_standalone](/dave.doc/contents/fls_model_standalone) for a working example.
 
 # Theory of Operation
 
@@ -42,7 +42,7 @@ Origins of this implementation are Cerqueira's "A novel GPU-based sonar simulato
 
 # Demonstrations
 
-* See [fls_model_standalone](fls_model_standalone) for a working example.
+* See [fls_model_standalone](/dave.doc/contents/fls_model_standalone) for a working example.
 
 ## Demonstrate Lack of Vertical Beam Patter
 
@@ -122,7 +122,7 @@ Here is how the 2D sonar image is created by the GazeboRosImageSonar plugin:
 			* Calls ConstructSonarImage to generate multibeam_image from depth and normal images.
 				* Implements the sonar equations.  Target strength, source level, noise level and directivity index are all hardcoded!  These should be parameterized and/or parts of the models and environments.
 				* Publishes the sonar equation image - the multibeam_image.
-			* Calls ConstructScanImage to generate raw_scan from depth and multibeam images.  The raw_scan is a 400xN single channel, 32-bit OpenCV image ([CV_32FC1](https://gist.github.com/yangcha/38f2fa630e223a8546f9b48ebbb3e61a))  N is set by the horizontal FOV, where N = 2*(400*sin(fov/2))+20.  fov is the horizontal FOV; in [the example](https://github.com/Field-Robotics-Lab/DAVE/blob/master/fls_gazebo/models/blueview_p900/model.sdf) this is 88.6 degrees
+			* Calls ConstructScanImage to generate raw_scan from depth and multibeam images.  The raw_scan is a 400xN single channel, 32-bit OpenCV image ([CV_32FC1](https://gist.github.com/yangcha/38f2fa630e223a8546f9b48ebbb3e61a))  N is set by the horizontal FOV, where N = 2*(400*sin(fov/2))+20.  fov is the horizontal FOV; in [the example](https://github.com/Field-Robotics-Lab/DAVE/blob/master/legacy/fls_gazebo/models/blueview_p900/model.sdf) this is 88.6 degrees
 				* A couple of TODO comments here on things that could be done.  Currently the size of the scan and the range! are hard-coded.
 				* The values for camera intrinsic parameters `focal_length_`, `cx_` and `cy_` are from [GazeboRosCameraUtils](http://docs.ros.org/melodic/api/gazebo_plugins/html/classgazebo_1_1GazeboRosCameraUtils.html).  Have to look at [source](https://github.com/ros-simulation/gazebo_ros_pkgs/blob/melodic-devel/gazebo_plugins/src/gazebo_ros_camera_utils.cpp) to find the defaults:
 					* focal_length = width/(2*tan(hfov/2))
@@ -141,7 +141,7 @@ Here is how the 2D sonar image is created by the GazeboRosImageSonar plugin:
 
 Some questions and thoughts for improvement.
 
-* The horizontal FOV is set in the [FLS example](https://github.com/Field-Robotics-Lab/DAVE/blob/master/fls_gazebo/models/blueview_p900/model.sdf).  In the [Camera::UpdateFOV()](https://bitbucket.org/osrf/gazebo/src/5f48d294547f2eccf368de73080470290dd6a3b1/gazebo/rendering/Camera.cc?at=default#Camera.cc-2006) function the vertical FOV is set by the camera aspect ratio.  Would we save some cycles by changing the camera image height in  https://github.com/Field-Robotics-Lab/DAVE/blob/master/fls_gazebo/models/blueview_p900/model.sdf ?
+* The horizontal FOV is set in the [FLS example](https://github.com/Field-Robotics-Lab/DAVE/blob/master/legacy/fls_gazebo/models/blueview_p900/model.sdf).  In the [Camera::UpdateFOV()](https://bitbucket.org/osrf/gazebo/src/5f48d294547f2eccf368de73080470290dd6a3b1/gazebo/rendering/Camera.cc?at=default#Camera.cc-2006) function the vertical FOV is set by the camera aspect ratio.  Would we save some cycles by changing the camera image height in  https://github.com/Field-Robotics-Lab/DAVE/blob/master/legacy/fls_gazebo/models/blueview_p900/model.sdf ?
 * Improve speckel noise application.
  	* Currently hardcoded - should be parameterized
  	* Do some research into how else it can be done?

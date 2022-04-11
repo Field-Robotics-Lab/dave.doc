@@ -13,14 +13,14 @@ nav_order: 1
  cat bathymetry_plugin.md | ./gh-md-toc -
 -->
 
-* [Sand Heightmap (from UUV Simulator)](#Sand-Heightmap)
-* [Axial Seamount](#Axial-Seamount)
-* [Santorini](#Santorini)
-* [Monterey Bay (Downloadable)](#Monterey-Bay)
+* [Sand Heightmap (from UUV Simulator)](#sand-heightmap)
+* [Axial Seamount](#axial-seamount)
+* [Santorini](#santorini)
+* [Monterey Bay (Downloadable)](#monterey-bay)
 
 # Overview
 
-There's two different methods to include heightmap in the Gazebo Classic. One is to use a generic Ogre's heightmap generation feature included in the Gazebo Classic which can be found [here](http://gazebosim.org/tutorials/?tut=dem). The other is to dissect and generate one or many tiles of bathymetry patches from large bathymetry heightmap files by using the [Bathymetry_Converter](https://github.com/Field-Robotics-Lab/Bathymetry_Converter). User may choose whichever they like. But the former (at current date, 2022/02/22, is found to have bug not being able to remove and insert new bathymetry on the fly). Also, the Ogre's feature takes much longer to load the bathymetry into the scene. The latter, can be used with [Bathymetry auto spawning/removing plugin](contents/Bathymetry-Integration) which inserts and removes bathymetry tiles acoording to the vehicles' location as needed.
+There's two different methods to include heightmap in the Gazebo Classic. One is to use a generic Ogre's heightmap generation feature included in the Gazebo Classic which can be found [here](http://gazebosim.org/tutorials/?tut=dem). The other is to dissect and generate one or many tiles of bathymetry patches from large bathymetry heightmap files by using the [Bathymetry_Converter](https://github.com/Field-Robotics-Lab/Bathymetry_Converter). User may choose whichever they like. But the former (at current date, 2022/02/22, is found to have bug not being able to remove and insert new bathymetry on the fly). Also, the Ogre's feature takes much longer to load the bathymetry into the scene. The latter, can be used with [Bathymetry auto spawning/removing plugin](/dave.doc/contents/dave_env/Bathymetry-Integration) which inserts and removes bathymetry tiles acoording to the vehicles' location as needed.
 
 # Sand Heightmap
 
@@ -175,7 +175,7 @@ python3 dave/examples/dave_nodes/src/merry_go_round.py
 
 # Monterey Bay
 
-At [Bathymetry_Integration](contents/Bathymetry-Integration) tutorial, the Monterey Bay area is included in the downloading file.
+At [Bathymetry_Integration](/dave.doc/contents/dave_env/Bathymetry-Integration) tutorial, the Monterey Bay area is included in the downloading file.
 
 ![/images/bathymetry_plugin_highlight.gif](../images/bathymetry_plugin_highlight.gif)
 ![/images/GPSViewer.jpg](../images/GPSViewer.jpg)

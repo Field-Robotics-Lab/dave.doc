@@ -1,6 +1,6 @@
 ---
 layout: default
-title: UUV Simulator Example Vehicles
+title: UUV Simulator Examples
 parent: Vehicle Models
 grand_parent: Dave Models
 nav_order: 4
@@ -21,21 +21,29 @@ Note - requires [uuv_simulation_evaluation](https://github.com/uuvsimulator/uuv_
 
 Separate package - see [example of usage](https://github.com/uuvsimulator/rexrov2)
 
-![RexRov2](https://github.com/uuvsimulator/rexrov2/blob/master/images/rexrov2.png)
+https://github.com/uuvsimulator/rexrov2
+
+![RexRov2](https://user-images.githubusercontent.com/7955120/162681739-0ae0b2ea-32b8-4ed4-9135-fe0d7aefbd62.png)
 
 ### Desistek SAGA ROV
 
-![desistek](https://github.com/uuvsimulator/desistek_saga/blob/master/images/desistek_saga.png)
+https://github.com/uuvsimulator/desistek_saga
+
+![desistek](https://user-images.githubusercontent.com/7955120/162681817-40dc372c-1f48-47c0-b6ee-d1d09559c68a.png)
 
 ### ECA A9
 
+https://github.com/uuvsimulator/eca_a9
 
-![eca](https://github.com/uuvsimulator/eca_a9/blob/master/images/eca_a9.png)
+![eca](https://user-images.githubusercontent.com/7955120/162681845-25ea8870-60b0-4e63-b150-e0a9447b3ac1.pn)
 
 
 ### Light Autonomous Underwater Vehicle (LAUV)
 
-![lauv](https://github.com/uuvsimulator/lauv_gazebo/blob/master/images/lauv.png)
+https://github.com/uuvsimulator/lauv_gazebo
+
+![lauv](https://user-images.githubusercontent.com/7955120/162681863-94fafccf-d2a8-4410-b0b2-c4c2dd4345e2.png)
+
 
 
 

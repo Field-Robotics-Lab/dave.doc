@@ -4,7 +4,7 @@ title: Logitech-F310-Gamepad-Mapping
 nav_exclude: true
 ---
 
-This page describes the default mapping for the [Logitech F310 Gamepad](https://www.logitech.com/assets/35017/gamepad-f310-gsw.pdf) using the Rexrov UUV and Oberon 7 arm.  This same mapping is used for the as the default mapping for teleoperation of the other UUV models within the DAVE environment - see [vehicle_examples](contents/dave_models/vehicle_examples).
+This page describes the default mapping for the [Logitech F310 Gamepad](https://www.logitech.com/assets/35017/gamepad-f310-gsw.pdf) using the Rexrov UUV and Oberon 7 arm.  This same mapping is used for the as the default mapping for teleoperation of the other UUV models within the DAVE environment - see [vehicle_examples](/dave.doc/contents/dave_models/vehicle_examples).
 
 ## Maneuvering the UUV
 In the default mode (when the RB button is not depressed) gamepad controls UUV movement as follows.

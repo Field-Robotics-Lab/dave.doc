@@ -29,7 +29,7 @@ To see each glider, expand the `Models` on the left side panel of the Gazebo win
 
 This command launches an example ocean floor and loads three gliders into the simulation world in the Gazebo. It is meant to launch with a `paused` flag since the hydrodynamics of the wave glider is not developed yet. It's mainly to demonstrate the visual of the three gliders.
 
-If you want to try the newly developed physics engine of the glider dynamics, please visit https://github.com/Field-Robotics-Lab/glider_hybrid_whoi
+If you want to try the newly developed physics engine of the glider dynamics, please visit [glider_hybrid_whoi repository](https://github.com/Field-Robotics-Lab/glider_hybrid_whoi)
 
 ### Slocum glider
 
