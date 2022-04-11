@@ -10,7 +10,7 @@ nav_order: 4
 
 ## Prerequisites
 
-* The [Ocean Current](/dave/dave_env/Ocean-Current) tutorial discusses the model used for specifying the ocean current velocity.
+* The [Ocean Current](/dave.doc/dave_env/Ocean-Current) tutorial discusses the model used for specifying the ocean current velocity.
 
 ## Setup
 

@@ -1,11 +1,12 @@
 ---
 layout: default
-title: Install Directly on Host Machine
-nav_exclude: true
+title: Directly on Host
+nav_order: 2
+parent: Installation
 ---
 
 This tutorial will walk you through the setup required to make a host machine ready to build and run the Dave simulations. Note that:
-* your host will need to satisfy the minimum [System Requirements](/dave/contents/installation/System-Requirements), and
+* your host will need to satisfy the minimum [System Requirements](/dave.doc/contents/installation/System-Requirements), and
 * the steps below assume you are running **Ubuntu 20.04**.
 
 ## Install all dependencies
@@ -34,7 +35,7 @@ sudo apt install -y ${GAZ} lib${GAZ}-dev python3-catkin-tools python3-rosdep pyt
 Note on specific package dependencies:
 - The manipulator arm requires `ros-${DIST}-effort-controllers`
 - `glider_hybrid_whoi` repository requires `ros-${DIST}-hector-gazebo-plugins`
-- `nps_uw_multibeam_sonar` repository requires `ros-${DIST}-pcl-ros` and `ros-${DIST}-image-view` (see full dependencies on the [multibeam tutorial page](/dave/contents/dave_sensors/Multibeam-Forward-Looking-Sonar))
+- `nps_uw_multibeam_sonar` repository requires `ros-${DIST}-pcl-ros` and `ros-${DIST}-image-view` (see full dependencies on the [multibeam tutorial page](/dave.doc/contents/dave_sensors/Multibeam-Forward-Looking-Sonar))
 
 Set up `.bashrc` for working with ROS Noetic:
 ```bash
@@ -55,5 +56,5 @@ which should yield something like...
 ```
 Gazebo multi-robot simulator, version 11.5.1
 ```
-## Next: [Get the Source Code](/dave/contents/installation/Clone-Dave-Repositories)
+## Next: [Get the Source Code](/dave.doc/contents/installation/Clone-Dave-Repositories)
 

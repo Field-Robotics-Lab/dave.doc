@@ -88,7 +88,7 @@ The `dave_dvl_demo_uuvsim.launch` file uses macros from a `teledyne_whn_uuvsim_d
 
 ![Xacro-generated WHN600 DVL mounted to a Caldus UUV at startup](../images/mounted_whn_uuvsim_startup.png)
 
-The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
+The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
 
 
 ![Xacro-generated WHN600 DVL mounted to a simple UUV during simulation run](../images/mounted_whn_uuvsim_running.png)
@@ -195,15 +195,15 @@ Current-affected water tracking can be tested and observed using the [`teledyne_
  roslaunch dave_sensor_launch teledyne_whn_dsl_demo.launch
 ```
 
-The water tracking implementation is described in the [DVL description](/dave/dave_sensors/dvl_description) wiki.  The default water tracking characteristics noted in the wiki are utilized here.
+The water tracking implementation is described in the [DVL description](/dave.doc/dave_sensors/dvl_description) wiki.  The default water tracking characteristics noted in the wiki are utilized here.
 
-Water tracking utilizes `gazebo::msgs::vector3D` messages published to a Gazebo `ocean current topic`.  This information is also published on the ROS network as on the topic `/hydrodynamics/current_velocity`.  The Gazebo world invoked by `teledyne_whn_dsl_demo.launch` incorporates the UUV Simulator [ocean current plugin](/dave/dave_env/Ocean-Current) for this purpose.
+Water tracking utilizes `gazebo::msgs::vector3D` messages published to a Gazebo `ocean current topic`.  This information is also published on the ROS network as on the topic `/hydrodynamics/current_velocity`.  The Gazebo world invoked by `teledyne_whn_dsl_demo.launch` incorporates the UUV Simulator [ocean current plugin](/dave.doc/dave_env/Ocean-Current) for this purpose.
 
 After launch `rqt_graph` can be used to plot vehicle velocity, current velocity, and the DVL's water tracking solution:
 ```
 rqt_plot /whn/dvl/velocity/x /whn/dvl/velocity/y /gazebo/model_states/twist[3]/linear/x /gazebo/model_states/twist[3]/linear/y /hydrodynamics/current_velocity/twist/linear/x /hydrodynamics/current_velocity/twist/linear/y
 ```
-The ocean current velocity is set to 0 at launch, so vehicle velocity and the DVL solution will be aligned.  Current can be arbitrarily reset using ROS services as described in [ocean current plugin](/dave/dave_env/Ocean-Current)).  E.g.,
+The ocean current velocity is set to 0 at launch, so vehicle velocity and the DVL solution will be aligned.  Current can be arbitrarily reset using ROS services as described in [ocean current plugin](/dave.doc/dave_env/Ocean-Current)).  E.g.,
 
 ```
 rosservice call /hydrodynamics/set_current_velocity "velocity: 1.0
@@ -228,7 +228,7 @@ rqt_plot /gazebo/model_states/pose[2]/position/z /gazebo/model_states/pose[3]/po
 #### Launch and Operation
 The `dave_dvl_demo_dsl.launch` file uses macros from a `teledyne_whn_dsl_description` package Xacro file to generate a WHN600 DVL model mounted on a medium-sized UUV (the Caldus UUV from the `caldus_description` package).  As with the standalone DVL example, the model is not within the world's camera field of view, but can be located by choosing to "Follow" or "Move to" the caldus model once the simulation is running.
 
-The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
+The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
 
 Launch arguments are the same as with the standalone WHN600 example. Relevant ROS topics are the same as well except that they are in the `caldus` vice `whn` namespace (e.g., `/caldus/dvl` for the DVL-derived velocities, covariances, and altitudes).  ROS nodes are similar to those of the standalone WHN600 example except that a `spawn_caldus` node is used to generate the robot model and the `joy_thrusterop.launch` file from the `dave_nodes` package is used to launch the nodes associated with joystick control.
 

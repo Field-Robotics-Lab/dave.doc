@@ -14,7 +14,7 @@ To build the Dave software, you need a development environment with the necessar
 ### Option A: [Configure Your Host Machine](/dave.doc/contents/installation/Install-Directly-on-Host)
 Set up your host machine as your development environment.
 * This involves installing all dependencies directly on the host itself.
-* This is the simplest option provided you are willing to set up your machine to use the specific version of Ubuntu/ROS/Gazebo listed in the [System Requirements](/dave/contents/installation/System-Requirements).
+* This is the simplest option provided you are willing to set up your machine to use the specific version of Ubuntu/ROS/Gazebo listed in the [System Requirements](/dave.doc/contents/installation/System-Requirements).
 
 ### Option B: [Use a Docker Image](/dave.doc/contents/installation/Docker-Development-Image)
 Set up a Docker container with the necessary dependencies.

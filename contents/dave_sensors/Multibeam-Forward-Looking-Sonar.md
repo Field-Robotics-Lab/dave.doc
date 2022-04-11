@@ -609,7 +609,7 @@ Multibeam sonar can be used for detection of degradation in the objects. To real
 
 ## Terrain Aided Navigation Scenarios
 
-- [TAN Development support features](/dave/contents/Terrain-Aided-Navigation-(TAN)-Senarios)
+- [TAN Development support features](/dave.doc/contents/Terrain-Aided-Navigation-(TAN)-Senarios)
 
 
 # Benchmarks

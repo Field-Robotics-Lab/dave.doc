@@ -73,19 +73,19 @@ Dave depends upon ROS Noetic and Gazebo 11 - with community support for previous
 
 ## Perception and Sensing
 
-* [Multibeam Forward Looking Sonar](/dave/contents/dave_sensors/Multibeam-Forward-Looking-Sonar)
-* [Doppler Velocity Logger](/dave/contents/dave_sensors/whn_dvl_examples)
-    * [DVL Water Tracking and Current Profiling](/dave/contents/dave_sensors/DVL-Water-Tracking)
-    * [DVL Seabed Gradient Estimation](/dave/contents/dave_sensors/DVL-Seabed-Gradient)
-* [3D Underwater Lidar](/dave/contents/dave_sensors/3D-Underwater-Lidar)
-* [Ultra-Short Base-Line](/dave/contents/dave_sensors/usbl_tutorial)
-* [Underwater Camera](/dave/contents/dave_sensors/Underwater-Camera-Roadmap)
+* [Multibeam Forward Looking Sonar](/dave.doc/contents/dave_sensors/Multibeam-Forward-Looking-Sonar)
+* [Doppler Velocity Logger](/dave.doc/contents/dave_sensors/whn_dvl_examples)
+    * [DVL Water Tracking and Current Profiling](/dave.doc/contents/dave_sensors/DVL-Water-Tracking)
+    * [DVL Seabed Gradient Estimation](/dave.doc/contents/dave_sensors/DVL-Seabed-Gradient)
+* [3D Underwater Lidar](/dave.doc/contents/dave_sensors/3D-Underwater-Lidar)
+* [Ultra-Short Base-Line](/dave.doc/contents/dave_sensors/usbl_tutorial)
+* [Underwater Camera](/dave.doc/contents/dave_sensors/Underwater-Camera-Roadmap)
 
 ## Ocean Environmental Models
 
-* [Ocean Current Models](/dave/contents/dave_env/Ocean-Current):  A plugin for constant/stratified ocean current with Gauss-Markov model definitions.
-* [Bathymetry generation and auto spawning](/dave/contents/dave_env/Bathymetry-Integration): A plugin that automatically spawns and removes bathymetry grids converted preliminarily from NOAA data.
-* [Occlusion](/dave/contents/dave_env/Occlusion): An example of bottom occlusion due to silt or object occlusion due to marine growth.
+* [Ocean Current Models](/dave.doc/contents/dave_env/Ocean-Current):  A plugin for constant/stratified ocean current with Gauss-Markov model definitions.
+* [Bathymetry generation and auto spawning](/dave.doc/contents/dave_env/Bathymetry-Integration): A plugin that automatically spawns and removes bathymetry grids converted preliminarily from NOAA data.
+* [Occlusion](/dave.doc/contents/dave_env/Occlusion): An example of bottom occlusion due to silt or object occlusion due to marine growth.
 
 ## Subsea Manipulator Models and Manipulation Feature Demonstrations
 
