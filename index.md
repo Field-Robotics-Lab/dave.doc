@@ -9,7 +9,7 @@ last_modified_date: 04/11/2022
 
 # Project `DAVE`
 
-Dave is a simulation environment to support the rapid testing and evaluation of underwater robotic solutions, specifically underwater vehicles (AUVs/UUVs) operating autonomously and completing missions that involve autonomous maniputlation.  The environment is built upon existing ROS and Gazebo infrastructure, particularly the [UUV Simulator](https://github.com/uuvsimulator/) and WHOI's [ds_sim](https://bitbucket.org/whoidsl/ds_sim/src/master/).
+DAVE Aquatic Virtual Environment(DAVE) is a simulation environment to support the rapid testing and evaluation of underwater robotic solutions, specifically underwater vehicles (AUVs/UUVs) operating autonomously and completing missions that involve autonomous maniputlation.  The environment is built upon existing ROS and Gazebo infrastructure, particularly the [UUV Simulator](https://github.com/uuvsimulator/) and WHOI's [ds_sim](https://bitbucket.org/whoidsl/ds_sim/src/master/).
 
 ## Quick Start
 

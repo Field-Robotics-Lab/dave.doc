@@ -66,6 +66,20 @@ layout: table_wrappers
       {% endif %}
     </nav>
     <footer class="site-footer">
+      <button class="btn js-toggle-dark-mode">Light Mode</button>
+      <script>
+      const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
+      jtd.addEvent(toggleDarkMode, 'click', function(){
+        if (jtd.getTheme() === 'dark') {
+          jtd.setTheme('light');
+          toggleDarkMode.textContent = 'Dark Mode';
+        } else {
+          jtd.setTheme('dark');
+          toggleDarkMode.textContent = 'Light Mode';
+        }
+      });
+      </script>
+      <br>
       This site uses <a href="https://github.com/pmarsceill/just-the-docs">Just the Docs</a> theme
     </footer>
   </div>
@@ -98,21 +112,6 @@ layout: table_wrappers
           </ul>
         </nav>
       {% endif %}
-
-      <button class="btn js-toggle-dark-mode">Light Mode</button>
-      <script>
-      const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
-      jtd.addEvent(toggleDarkMode, 'click', function(){
-        if (jtd.getTheme() === 'dark') {
-          jtd.setTheme('light');
-          toggleDarkMode.textContent = 'Dark Mode';
-        } else {
-          jtd.setTheme('dark');
-          toggleDarkMode.textContent = 'Light Mode';
-        }
-      });
-      </script>
-
     </div>
     <div id="main-content-wrap" class="main-content-wrap">
       {% unless page.url == "/" %}

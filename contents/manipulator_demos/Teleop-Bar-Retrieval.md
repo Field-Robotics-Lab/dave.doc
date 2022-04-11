@@ -1,4 +1,5 @@
 ---
+last_modified_date: 08/14/2021
 layout: default
 title: Bar Retrieval
 parent: Manipulator Demos

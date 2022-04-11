@@ -1,9 +1,9 @@
 ---
+last_modified_date: 09/29/2021
 layout: default
 title: System Requirements
 nav_order: 1
 parent: Installation
-last_modified_date: 04/11/2022
 ---
 
 # System Requirements for Running dave
