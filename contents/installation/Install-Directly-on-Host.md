@@ -35,7 +35,7 @@ sudo apt install -y ${GAZ} lib${GAZ}-dev python3-catkin-tools python3-rosdep pyt
 Note on specific package dependencies:
 - The manipulator arm requires `ros-${DIST}-effort-controllers`
 - `glider_hybrid_whoi` repository requires `ros-${DIST}-hector-gazebo-plugins`
-- `nps_uw_multibeam_sonar` repository requires `ros-${DIST}-pcl-ros` and `ros-${DIST}-image-view` (see full dependencies on the [multibeam tutorial page](/dave.doc/contents/dave_sensors/Multibeam-Forward-Looking-Sonar))
+- `nps_uw_multibeam_sonar` repository requires `ros-${DIST}-pcl-ros` and `ros-${DIST}-image-view` (see full dependencies on the [multibeam tutorial page](/dave.doc/contents/dave_sensors/Multibeam-Forward-Looking-Sonar/#installation))
 
 Set up `.bashrc` for working with ROS Noetic:
 ```bash

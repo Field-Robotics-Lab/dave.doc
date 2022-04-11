@@ -25,7 +25,7 @@ parent: Installation
 ### Nvidia Driver
 Our tutorials assume you have an Nvidia graphics card configured to use the proprietary driver.
 * There are many online guides for configuring the Nvidia driver correctly on Ubuntu.
-* Here's [one example with graphical and command-line options](https://github.com/Field-Robotics-Lab/dave/wiki/linuxbabe.com/ubuntu/install-nvidia-driver-ubuntu-18-04).
+* Here's [one example with graphical and command-line options](https://www.linuxbabe.com/ubuntu/install-nvidia-driver-ubuntu-18-04).
 
 ### Docker
 Running Docker is optional. If you choose to use the container-based installation instructions, the following are required:
