@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Object Degradation Tool
-parent: Underwater Object Models
+parent: Object Models
 grand_parent: Dave Models
 nav_order: 2
 ---

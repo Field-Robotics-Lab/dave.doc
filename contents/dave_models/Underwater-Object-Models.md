@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Underwater Object Models
+title: Object Models
 parent: Dave Models
 nav_order: 3
 has_children: true

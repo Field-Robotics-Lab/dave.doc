@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Underwater Bathymetry Models
+title: Bathymetry Models
 parent: Dave Models
 nav_order: 2
 has_children: true

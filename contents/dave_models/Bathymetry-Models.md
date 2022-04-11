@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Bathymetry Models
-parent: Underwater Bathymetry Models
+parent: Bathymetry Models
 grand_parent: Dave Models
 nav_order: 1
 ---

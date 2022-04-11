@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Dave Glider Models
-parent: Underwater Vehicle Models
+parent: Vehicle Models
 grand_parent: Dave Models
 nav_order: 3
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Underwater Vehicle Models
+title: Vehicle Models
 parent: Dave Models
 nav_order: 1
 has_children: true
