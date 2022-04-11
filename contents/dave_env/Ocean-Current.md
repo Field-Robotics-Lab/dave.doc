@@ -57,7 +57,7 @@ where <img src="https://render.githubusercontent.com/render/math?math=\textbf{\o
 The [world SDF](https://github.com/uuvsimulator/uuv_simulator/blob/ddeb823a25eacfb2d7ed7569f4726881f7f289db/uuv_gazebo_worlds/worlds/ocean_waves.world#L76) consists of the following section to define ocean currents and statistics and it is self-explanatory.
 
 
-```xml
+```xacro
     <plugin name="underwater_current_plugin" filename="libuuv_underwater_current_ros_plugin.so">
       <namespace>hydrodynamics</namespace>
       <constant_current>
@@ -361,13 +361,16 @@ The hydrodynamics plugin (we are using the uuv_simulator plugin which is loaded 
 
 ## Multiple vehicle support how-to
 A vehicle being affected by the ocean current is defined at hydrodynamics plugins with `<flow_velocity_topic>` parameter which is at uuv_ws/src/dave/urdf/robots/rexrov_descripton/urdf/rexrov_oberon7_transient_current.xacro. Having it to a vehicle-specific topic, here it is hydrodynamics/current_velocity/rexrov, a vehicle will be affected by it.
-```XML
+
+```xacro
 <plugin name="uuv_plugin" filename="libuuv_underwater_object_ros_plugin.so">
   <flow_velocity_topic>hydrodynamics/current_velocity/$(arg namespace)</flow_velocity_topic>
 </plugin>
 ```
+
 The vehicle-specific topic is published using the dave_model_plugins (dave_transient_current_plugin) which is also at uuv_ws/src/dave/urdf/robots/rexrov_descripton/urdf/rexrov_oberon7_transient_current.xacro
-```XML
+
+```xacro
 <plugin name="dave_transient_current_plugin" filename="libdave_transient_current_plugin.so">
   <flow_velocity_topic>hydrodynamics/current_velocity/$(arg namespace)</flow_velocity_topic>
   <base_link_name>$(arg namespace)/base_link</base_link_name>
@@ -388,6 +391,7 @@ The vehicle-specific topic is published using the dave_model_plugins (dave_trans
   </transient_current>
 </plugin>
 ```
+
 Here, the `<flow_velocity_topic>` should match with the topic that the hydrodynamics plugin is subscribing to. Also, `<topic_stratified_database>` should match with the ROS database topic at dave_world_ros_plugins which is defined in the world file.
 
 

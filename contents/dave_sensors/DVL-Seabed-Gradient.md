@@ -36,7 +36,7 @@ Running either launch script starts gazebo and loads a standalone DVL model. The
 
 The launch script should spawn a gazebo window and a figure containing three empty subplots.
 
-~[/images/dvl_gradient_startup.png](../images/dvl_gradient_startup.png)
+![/images/dvl_gradient_startup.png](../images/dvl_gradient_startup.png)
 
 In order to build the gradient maps, the sensor must be moved through the
 scene. The terminal in which the nodes are launched is running the
@@ -59,7 +59,7 @@ e/c : increase/decrease only angular speed by 10%
 ```
 After moving the sensor around the map for some time, the plots should begin to look like:
 
-~[/images/dvl_gradient.png](../images/dvl_gradient.png)
+![/images/dvl_gradient.png](../images/dvl_gradient.png)
 
 The top plot displays the measured gradient magnitude where warmer colors
 represent a larger gradient. The central plot shows the magnitude and direction as a quiver plot. The bottom plot shows the difference between the measured and ground truth (GT) gradient magnitude, where warmer colors represent a greater difference between the measured and GT values.
@@ -68,7 +68,8 @@ represent a larger gradient. The central plot shows the magnitude and direction 
 On launch, the `teleop_twist_keyboard` node is started and publishes the
 `/cmd_vel` twist topic which is used here to send twist messages to the model.
 
-#### `dvl_state_and_gradient_(uuvsim/dsl).py`
+- `dvl_state_and_gradient_(uuvsim/dsl).py`
+
 This script instantiates a node that subscribes to the following topics with the UUV Simulator DVL:
 
 ```
@@ -90,10 +91,12 @@ and publishes:
 ```
 /dvl_gradient
 ```
-##### DSL
+- DSL
+
 The `/whn/dvl` topic contains a custom DVL message, `ds_sensor_msgs/Dvl`, from which we can extract range values from the individual beams within the `range` list.
 
-##### UUV Simulator
+- UUV Simulator
+
 The `/whn/dvl_*` topics contain a `sensor_msgs/Range` message which reports a single range value per beam. The estimated range combined with the sensor layout described in `teledyne_whn_uuvsim_description/urdf/teledyn_whn.xacro` allows for gradient estimation.
 
 The `/gazebo/model_states` topic is published by gazebo and is required for keeping track of the model location within the world.
@@ -102,7 +105,8 @@ The `/gazebo/model_states` topic is published by gazebo and is required for keep
 
 `dvl_gradient` contains a `geometry_msgs/Point` message which packages the gradient as `x` and `y` for the 2D direction of increasing gradient in world coordinates and `z` for the magnitude.
 
-#### `dvl_gradient_plot.py`
+- `dvl_gradient_plot.py`
+
 This script instantiates a node which creates the three realtime plots of the
 gradient measurements. The node subscribes to:
 

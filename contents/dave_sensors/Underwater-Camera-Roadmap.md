@@ -11,8 +11,8 @@ has_children: false
 ## Turbidity and Light Attenuation
 Turbidity and light attenuation are important underwater effects that give water its volume. In order to get some effects (volumetric shadows, god rays, etc…) working, water must be rendered as a volume / participating medium.
 
-[[https://user-images.githubusercontent.com/14305903/159775251-35f5e1f4-e30f-41ec-89c7-0ef3636f382f.png]]
-[[https://user-images.githubusercontent.com/14305903/159775255-482342b1-cc19-4cae-9e1d-7d66487fb723.png]]
+![image](https://user-images.githubusercontent.com/14305903/159775251-35f5e1f4-e30f-41ec-89c7-0ef3636f382f.png)
+![image](https://user-images.githubusercontent.com/14305903/159775255-482342b1-cc19-4cae-9e1d-7d66487fb723.png)
 
 It becomes much more difficult to see at depths so a light source near the camera may need to be implemented. Attenuation and in-scattering can be adjusted to an amount that doesn’t degrade visibility at depths.
 
@@ -22,8 +22,8 @@ Create a fragment shader that calculates the in-scattering between the camera an
 ## Backscatter
 Reflections from particles / dust floating around in water produces backscatter. To best demonstrate the effect, the particles should be animated and should also have their reflections attenuated.
 
-<img src="https://user-images.githubusercontent.com/14305903/159775337-76999059-a53d-475a-b94e-24abacd05492.png" width=45% height=45%>
-<img src="https://user-images.githubusercontent.com/14305903/159775339-7add24dc-a7bb-417e-83eb-5592897b1192.png" width=45% height=45%>
+![image](https://user-images.githubusercontent.com/14305903/159775337-76999059-a53d-475a-b94e-24abacd05492.png)
+![image](https://user-images.githubusercontent.com/14305903/159775339-7add24dc-a7bb-417e-83eb-5592897b1192.png)
 
 ### Approach 1: Create seamless animated spherical textures
 To simulate movement, one will create multiple different animated textures that contain backscatter with a transparent background. After rendering the scene normally, a subpass will be created that will render multiple spheres with the backscatter texture applied. The spheres should be rendered around the camera with increasing radii. As the camera moves around, the sphere that has just been passed through by the camera will be repositioned and rescaled. With proper fading values, the transition between spheres will be seamless.
@@ -38,8 +38,8 @@ Before the renderpass, generate a group of primitives that will represent the pa
 #### Requires: Turbidity and Light Attenuation for a participating media
 Since the turbidity effect renders water as a volume, lights should be able to cast shadows on the volume.
 
-<img src="https://user-images.githubusercontent.com/14305903/159775384-17b24a85-2cd3-4723-943e-bdffda239fa0.png" width=45% height=45%>
-<img src="https://user-images.githubusercontent.com/14305903/159775388-f90d9e1e-f379-4ffc-bbff-fb3e37846ac9.png" width=45% height=45%>
+![image](https://user-images.githubusercontent.com/14305903/159775384-17b24a85-2cd3-4723-943e-bdffda239fa0.png)
+![image](https://user-images.githubusercontent.com/14305903/159775388-f90d9e1e-f379-4ffc-bbff-fb3e37846ac9.png)
 
 ### Approach 1: Ray-marching with shadow volumes
 
@@ -64,5 +64,5 @@ To create either a pincushion or barrel distortion, adjust the SDF distortion va
 
 ## Underwater Lights
 
-<img src="https://user-images.githubusercontent.com/14305903/159775423-47e796c0-c99e-4280-8737-33baaaba2b4d.png" width=45% height=45%>
-<img src="https://user-images.githubusercontent.com/14305903/159775428-f6608e92-61de-4aa1-806c-a3be6746b935.png" width=45% height=45%>
+![image](https://user-images.githubusercontent.com/14305903/159775423-47e796c0-c99e-4280-8737-33baaaba2b4d.png)
+![image](https://user-images.githubusercontent.com/14305903/159775428-f6608e92-61de-4aa1-806c-a3be6746b935.png)

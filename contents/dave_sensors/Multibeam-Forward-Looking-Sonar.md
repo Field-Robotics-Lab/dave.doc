@@ -17,8 +17,7 @@ Previous sonar sensor plugins were based on image processing realms by translati
      - 10Hz refresh rate with 10m range (Raster version)
 
 - Original Research paper
-  - Choi, W., Olson, D., Davis, D., Zhang, M., Racson, A., Bingham, B. S., ... & Herman, J. Physics-based modelling and simulation of Multibeam Echosounder perception for Autonomous Underwater Manipulation. Frontiers in Robotics and AI, 279.
-    - [DOI Link](https://www.frontiersin.org/articles/10.3389/frobt.2021.706646)
+  - Choi, W., Olson, D., Davis, D., Zhang, M., Racson, A., Bingham, B. S., ... & Herman, J. Physics-based modelling and simulation of Multibeam Echosounder perception for Autonomous Underwater Manipulation. Frontiers in Robotics and AI, 279. [10.3389/frobt.2021.706646](https://www.frontiersin.org/articles/10.3389/frobt.2021.706646)
 
 ![MultibeamSonarDemo](../images/MultibeamSonarDemo.gif)
 
