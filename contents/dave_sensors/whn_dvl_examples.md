@@ -93,7 +93,7 @@ The `dave_dvl_demo_uuvsim.launch` file uses macros from a `teledyne_whn_uuvsim_d
 
 ![Xacro-generated WHN600 DVL mounted to a Caldus UUV at startup](../images/mounted_whn_uuvsim_startup.png)
 
-The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
+The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/manipulator_demos/Logitech-F310-Gamepad-Mapping) or other joystick.
 
 
 ![Xacro-generated WHN600 DVL mounted to a simple UUV during simulation run](../images/mounted_whn_uuvsim_running.png)
@@ -239,7 +239,7 @@ rqt_plot /gazebo/model_states/pose[2]/position/z /gazebo/model_states/pose[3]/po
 
 The `dave_dvl_demo_dsl.launch` file uses macros from a `teledyne_whn_dsl_description` package Xacro file to generate a WHN600 DVL model mounted on a medium-sized UUV (the Caldus UUV from the `caldus_description` package).  As with the standalone DVL example, the model is not within the world's camera field of view, but can be located by choosing to "Follow" or "Move to" the caldus model once the simulation is running.
 
-The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
+The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/manipulator_demos/Logitech-F310-Gamepad-Mapping) or other joystick.
 
 Launch arguments are the same as with the standalone WHN600 example. Relevant ROS topics are the same as well except that they are in the `caldus` vice `whn` namespace (e.g., `/caldus/dvl` for the DVL-derived velocities, covariances, and altitudes).  ROS nodes are similar to those of the standalone WHN600 example except that a `spawn_caldus` node is used to generate the robot model and the `joy_thrusterop.launch` file from the `dave_nodes` package is used to launch the nodes associated with joystick control.
 

@@ -63,7 +63,7 @@ roslaunch uuv_dave joy_thrusterop.launch namespace:=caldus
 ```
 roslaunch dave_robot_launch virgil.launch
 ```
-which includes gamepad telop following the convention [Gamepad Teleoperation Mapping](/dave.doc/contents/Logitech-F310-Gamepad-Mapping).
+which includes gamepad telop following the convention [Gamepad Teleoperation Mapping](/dave.doc/contents/manipulator_demos/Logitech-F310-Gamepad-Mapping).
 
 
 ![virgil](https://user-images.githubusercontent.com/8268930/159816122-97fae421-ac6a-47f6-b344-06375ccff1d1.png)

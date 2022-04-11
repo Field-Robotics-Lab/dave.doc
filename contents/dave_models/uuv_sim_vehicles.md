@@ -3,7 +3,7 @@ layout: default
 title: UUV Simulator Examples
 parent: Vehicle Models
 grand_parent: Dave Models
-nav_order: 4
+nav_order: 5
 ---
 
 ##  UUV Simulator Example Vehicles
