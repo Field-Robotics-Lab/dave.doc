@@ -12,7 +12,7 @@ This page describes usage for the reference configuration of Project DAVE.  The 
 
 Here is an example view:
 
-[[/images/uuv_reference_view.png]]
+![image](images/uuv_reference_view.png)
 
 # Run the UUV simulation
 
@@ -29,11 +29,11 @@ Right Bumper pressed | Oberon 7 Arm
 
 UUV body controls:
 
-[[/images/joy_uuv_controller.png]]
+![image](images/joy_uuv_controller.png)
 
 Oberon 7 Arm controls:
 
-[[/images/joy_arm_controller.png]]
+![image](images/joy_arm_controller.png)
 
 # Control the Gazebo camera
 Control Gazebo's camera scene view using the mouse, see http://gazebosim.org/hotkeys.html.
