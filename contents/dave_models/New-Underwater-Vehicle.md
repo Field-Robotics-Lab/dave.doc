@@ -150,7 +150,7 @@ There are a number of sensors available in DAVE. In `virgil.xacro`, we include t
 ```
 
 ## Add joystick control
-`/dave/examples/dave_nodes/src/virgil_thrusterop.py` defines the mapping between the joystick, such as a PS4 controller, and the thrusters on the vehicle. This mapping should correspond to [this guide](contents/Logitech-F310-Gamepad-Mapping). As an example, there are three vertical thrusters on virgil. They are operated via the number 1 axis on the joystick. The values from the joystick are multiplied by a gain which scales the magnitude of the thrust as well as the direction. For axis 1 (up and down)
+`/dave/examples/dave_nodes/src/virgil_thrusterop.py` defines the mapping between the joystick, such as a PS4 controller, and the thrusters on the vehicle. This mapping should correspond to [this guide](/dave.doc/contents/Logitech-F310-Gamepad-Mapping). As an example, there are three vertical thrusters on virgil. They are operated via the number 1 axis on the joystick. The values from the joystick are multiplied by a gain which scales the magnitude of the thrust as well as the direction. For axis 1 (up and down)
 ```
         # Put thruster gains into dict
         self.gain_dict = dict()
@@ -256,4 +256,4 @@ rostopic echo /virgil/thrusters/0/thrust
 ```
 We can follow this same procedure for each sensor and thruster.
 
-Other vehicle [examples](contents/dave_models/vehicle_examples)
+Other vehicle [examples](/dave.doc/contents/dave_models/vehicle_examples)

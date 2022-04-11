@@ -47,4 +47,4 @@ If the simulator does not close promptly with Ctrl-C, you can use the command `p
 
 More details are discussed at [uuv_simulator_reference](/dave.doc/contents/uuv_simulator_reference).
 
-## Next: [Try out some other tutorials](https://field-robotics-lab.github.io/dave.doc/)
+## Next: [Try out some other tutorials](https://field-robotics-lab.github.io/dave.doc/#tutorials-and-demonstrations)
