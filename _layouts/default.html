@@ -66,16 +66,16 @@ layout: table_wrappers
       {% endif %}
     </nav>
     <footer class="site-footer">
-      <button class="btn js-toggle-dark-mode">Light Mode</button>
+      <button class="btn js-toggle-light-mode">Change to Light Mode(Click Twice)</button>
       <script>
-      const toggleDarkMode = document.querySelector('.js-toggle-dark-mode');
-      jtd.addEvent(toggleDarkMode, 'click', function(){
-        if (jtd.getTheme() === 'dark') {
-          jtd.setTheme('light');
-          toggleDarkMode.textContent = 'Dark Mode';
-        } else {
+      const toggleLightMode = document.querySelector('.js-toggle-light-mode');
+      jtd.addEvent(toggleLightMode, 'click', function(){
+        if (jtd.getTheme() === 'light') {
           jtd.setTheme('dark');
-          toggleDarkMode.textContent = 'Light Mode';
+          toggleLightMode.textContent = 'View in Light Mode';
+        } else {
+          jtd.setTheme('light');
+          toggleLightMode.textContent = 'View in Dark Mode';
         }
       });
       </script>
