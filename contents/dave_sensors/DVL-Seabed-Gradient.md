@@ -70,50 +70,50 @@ On launch, the `teleop_twist_keyboard` node is started and publishes the
 
 - `dvl_state_and_gradient_(uuvsim/dsl).py`
 
-This script instantiates a node that subscribes to the following topics with the UUV Simulator DVL:
+    This script instantiates a node that subscribes to the following topics with the UUV Simulator DVL:
 
-```
-/whn/dvl_sonar0
-/whn/dvl_sonar1
-/whn/dvl_sonar2
-/whn/dvl_sonar3
-/gazebo/model_states
-/cmd_vel
-```
-and to the following with the DSL DVL:
+    ```
+    /whn/dvl_sonar0
+    /whn/dvl_sonar1
+    /whn/dvl_sonar2
+    /whn/dvl_sonar3
+    /gazebo/model_states
+    /cmd_vel
+    ```
+    and to the following with the DSL DVL:
 
-```
-/whn/dvl
-/gazebo/model_states
-/cmd_vel
-```
-and publishes:
-```
-/dvl_gradient
-```
+    ```
+    /whn/dvl
+    /gazebo/model_states
+    /cmd_vel
+    ```
+    and publishes:
+    ```
+    /dvl_gradient
+    ```
 - DSL
 
-The `/whn/dvl` topic contains a custom DVL message, `ds_sensor_msgs/Dvl`, from which we can extract range values from the individual beams within the `range` list.
+    The `/whn/dvl` topic contains a custom DVL message, `ds_sensor_msgs/Dvl`, from which we can extract range values from the individual beams within the `range` list.
 
 - UUV Simulator
 
-The `/whn/dvl_*` topics contain a `sensor_msgs/Range` message which reports a single range value per beam. The estimated range combined with the sensor layout described in `teledyne_whn_uuvsim_description/urdf/teledyn_whn.xacro` allows for gradient estimation.
+    The `/whn/dvl_*` topics contain a `sensor_msgs/Range` message which reports a single range value per beam. The estimated range combined with the sensor layout described in `teledyne_whn_uuvsim_description/urdf/teledyn_whn.xacro` allows for gradient estimation.
 
-The `/gazebo/model_states` topic is published by gazebo and is required for keeping track of the model location within the world.
+    The `/gazebo/model_states` topic is published by gazebo and is required for keeping track of the model location within the world.
 
-`/gazebo/model_states/` and `/cmd_vel` from `teleop_twist_keyboard` are used to set the twist of the model with the `SetModelState` service.
+    `/gazebo/model_states/` and `/cmd_vel` from `teleop_twist_keyboard` are used to set the twist of the model with the `SetModelState` service.
 
-`dvl_gradient` contains a `geometry_msgs/Point` message which packages the gradient as `x` and `y` for the 2D direction of increasing gradient in world coordinates and `z` for the magnitude.
+    `dvl_gradient` contains a `geometry_msgs/Point` message which packages the gradient as `x` and `y` for the 2D direction of increasing gradient in world coordinates and `z` for the magnitude.
 
 - `dvl_gradient_plot.py`
 
-This script instantiates a node which creates the three realtime plots of the
-gradient measurements. The node subscribes to:
+    This script instantiates a node which creates the three realtime plots of the
+    gradient measurements. The node subscribes to:
 
-```
-/gazebo/model_states
-/dvl_gradient
-```
+    ```
+    /gazebo/model_states
+    /dvl_gradient
+    ```
 
-The `scipy.interpolate.griddata` function is used to bin and interpolate the
-data gathered while traversing the world.
+    The `scipy.interpolate.griddata` function is used to bin and interpolate the
+    data gathered while traversing the world.

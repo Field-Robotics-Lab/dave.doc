@@ -33,8 +33,8 @@ A bathymetry integration plugin that automatically spawns and removes bathymetry
 
 The plugin is defined at `.world` file and would require input settings used for preliminarily converted bathymetry data (prefix, spacings, number of columns/rows, anchored latitude/longitude). The bathymetry tile data is located at `dave/models/dave_bathymetry_models/`.Also, each robot will provide its locations with intervals defined at `urdf`. The plugin is also usable for multiple robots.
 
-![image](/dave.doc/images/bathymetry_plugin_highlight.gif)
-![image](/dave.doc/images/GPSViewer.jpg)
+![image](../images/bathymetry_plugin_highlight.gif)
+![image](../images/GPSViewer.jpg)
 
 ## Tutorial: How-to
 

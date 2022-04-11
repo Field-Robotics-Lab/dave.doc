@@ -67,17 +67,22 @@ The following ROS topics are relevant:
 - **/dvl/dvl\_sonar0**, **/dvl/dvl\_sonar1**, **/dvl/dvl\_sonar2**, and **/dvl/dvl\_sonar3** (`sensor_msgs/Range`): Range and other information for each individual DVL sonar.
 
 #### ROS Nodes
-##### spawn\_whn (`gazebo_ros/spawn_model)`
-The `spawn_whn` node is used to spawn the standalone WHN600 model in the gazebo world.  Once the model has been spawned, this node will terminate.
 
-##### apply\_velocity (`nps_uw_sensors_gazebo/simple_motion.py`)
-The `apply_velocity` node publishes periodic `gazebo_msgs/ModelState` messages to the `/gazebo/set_model_state` topic to control the motion of the DVL model through a descending octabonal pattern (fixed linear speed of 1 meter per second, vertical speed of between 0.2 and  -0.4 meters per second).  The model name and frame to which the new state is relative are provided as ROS parameters (set in the launch file).  The frame of relative motion should be the model's base link to ensure correct motion.
+- spawn\_whn (`gazebo_ros/spawn_model)`
 
-##### joint\_state\_publisher (`joint_state_publisher/joint_state_publisher`)
-The `joint_state_publisher` node continually publishes the state of the model's joints to the `/joint_states` topic as it moves through the world so that they will be available to the robot state publisher.
+    The `spawn_whn` node is used to spawn the standalone WHN600 model in the gazebo world.  Once the model has been spawned, this node will terminate.
 
-##### robot\_state\_publisher (`robot_state_publisher/robot_state_publisher`)
-The `robot_state_publisher` node subscribes to the `/joint_states` topic and publishes transforms to the `/tf` topic.  The DVL plugin uses the transforms associated with the 4 DVL sonar beams in its calculations.
+- apply\_velocity (`nps_uw_sensors_gazebo/simple_motion.py`)
+
+    The `apply_velocity` node publishes periodic `gazebo_msgs/ModelState` messages to the `/gazebo/set_model_state` topic to control the motion of the DVL model through a descending octabonal pattern (fixed linear speed of 1 meter per second, vertical speed of between 0.2 and  -0.4 meters per second).  The model name and frame to which the new state is relative are provided as ROS parameters (set in the launch file).  The frame of relative motion should be the model's base link to ensure correct motion.
+
+- joint\_state\_publisher (`joint_state_publisher/joint_state_publisher`)
+
+    The `joint_state_publisher` node continually publishes the state of the model's joints to the `/joint_states` topic as it moves through the world so that they will be available to the robot state publisher.
+
+- robot\_state\_publisher (`robot_state_publisher/robot_state_publisher`)
+
+    The `robot_state_publisher` node subscribes to the `/joint_states` topic and publishes transforms to the `/tf` topic.  The DVL plugin uses the transforms associated with the 4 DVL sonar beams in its calculations.
 
 See launch file for additional information regarding parameters and arguments.
 
@@ -102,35 +107,38 @@ The `teledyne_whn_uuvsim` model is a self-contained implementation of the Teledy
 In order for the DVL plugin to work correclty, it must have access to the ROS transforms for the robot link to which it is attached.  Because SDF is not compatible with the ROS robot state publisher, the transforms must be published from a different source (most likely from the robot's controller plugin).
 
 #### Teledyne WHN Macros
-##### teledyne_whn.xacro
-The `teledyne_whn_uuvsim_description` package `urdf/teledyne_whn` Xacro file provides a set of macros for the addition of a Teledyne WHN600 DVL to an arbitrary Xacro-generated robot model (see `urdf/uuvsim_teledyne_whn.xacro` for a simple example).  Four top-level macros are provided:
 
-- **teledyne\_whn\_macro**: provides for the generation of a DVL model with a user-specified namespace, parent link (robot base link), inertial reference frame, and origin relative to the inertial reference frame.  Parameters are as follows:
--- *namespace*:  string namespace in which all of the links and ROS topics reside.
--- *parent_link*:  robot link to which the sensor link will be attached.
--- *inertial_reference_frame*:  static reference frame (i.e., world frame) in which the robot maneuvers.
--- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
-- **teledyne\_whn\_sensor\_enu**: provides for the generation of a DVL model in an east-north-up inertial reference frame (i.e., the default Gazebo frame) by invoking the `teledyne_whn_macro` macro with appropriate parameters (the examples of this tutorial utilize this macro).  Parameters are as follows:
--- *namespace*:  string namespace in which all of the links and ROS topics reside.
--- *parent_link*:  robot link to which the sensor link will be attached.
--- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
-- **teledyne\_whn\_sensor\_ned**: provides for the generation of a DVL model in an north-east-down inertial reference frame (i.e., the default Gazebo frame) by invoking the `dvl_macro` macro with appropriate parameters.  The NED frame must be explicitly defined or included in the world model (see `dave_ocean_waves.world` from the `dave_worlds` package) for models generated with this macro to function properly.  Parameters are as follows:
--- *namespace*:  string namespace in which all of the ROS topics reside.
--- *parent_link*:  robot link to which the sensor link will be attached.
--- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
-- **dvl\_plugin\_macro**: provides for the generation of a DVL model with user-specified namespace, suffix (sensor ID), parent link, individual sonar ROS topic names, visual scale, update rate, sensor noise parameters, inertial reference frame, and origin relative to the inertial reference frame.  This macro provides the most flexibility and can be used to model most real-world DVLs.  The `teledyne_whn_macro` macro is essentially a wrapper for this macro and can be used as an example for its use.  Parameters are as follows:
--- *namespace*:  string namespace in which all of the links and ROS topics reside.
--- *suffix*:  arbitrary identifying suffix that is added to all joint and link names.
--- *parent_link*:  robot link to which the sensor link will be attached.
--- *topic*:  ROS topic to which DVL sensor messages are to be published.
--- *update_rate*:  rate at which DVL sensor messages are to be published (Hz).
--- *reference_frame:  static reference frame (i.e., world frame) in which the robot maneuvers.
--- *noise_sigma*:  standard deviation of the velocity solution (only used for covariance matrix computation).
--- *noise_amplitude*:  standard deviation of the Gaussian noise added to each of the computed linear velocity vectors.
--- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
+- teledyne_whn.xacro
 
-##### teledyne_whn_standalone.xacro
-The `teledyne_whn_uuvsim_description` package `urdf/teledyne_whn_standalone` Xacro file utilizes the macros provided in `teledyne_whn.xacro` to create with a single WHN600 DVL attached to a dimensionless link.  The resulting URDF model is suitable for upload to the ROS parameter server for subsequent insertion into Gazebo scenes. This macro is utilized by the `dave_sensor_launch/teledyne_whn_uuvsim_demo.launch` described above.
+    The `teledyne_whn_uuvsim_description` package `urdf/teledyne_whn` Xacro file provides a set of macros for the addition of a Teledyne WHN600 DVL to an arbitrary Xacro-generated robot model (see `urdf/uuvsim_teledyne_whn.xacro` for a simple example).  Four top-level macros are provided:
+
+    - **teledyne\_whn\_macro**: provides for the generation of a DVL model with a user-specified namespace, parent link (robot base link), inertial reference frame, and origin relative to the inertial reference frame.  Parameters are as follows:
+    -- *namespace*:  string namespace in which all of the links and ROS topics reside.
+    -- *parent_link*:  robot link to which the sensor link will be attached.
+    -- *inertial_reference_frame*:  static reference frame (i.e., world frame) in which the robot maneuvers.
+    -- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
+    - **teledyne\_whn\_sensor\_enu**: provides for the generation of a DVL model in an east-north-up inertial reference frame (i.e., the default Gazebo frame) by invoking the `teledyne_whn_macro` macro with appropriate parameters (the examples of this tutorial utilize this macro).  Parameters are as follows:
+    -- *namespace*:  string namespace in which all of the links and ROS topics reside.
+    -- *parent_link*:  robot link to which the sensor link will be attached.
+    -- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
+    - **teledyne\_whn\_sensor\_ned**: provides for the generation of a DVL model in an north-east-down inertial reference frame (i.e., the default Gazebo frame) by invoking the `dvl_macro` macro with appropriate parameters.  The NED frame must be explicitly defined or included in the world model (see `dave_ocean_waves.world` from the `dave_worlds` package) for models generated with this macro to function properly.  Parameters are as follows:
+    -- *namespace*:  string namespace in which all of the ROS topics reside.
+    -- *parent_link*:  robot link to which the sensor link will be attached.
+    -- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
+    - **dvl\_plugin\_macro**: provides for the generation of a DVL model with user-specified namespace, suffix (sensor ID), parent link, individual sonar ROS topic names, visual scale, update rate, sensor noise parameters, inertial reference frame, and origin relative to the inertial reference frame.  This macro provides the most flexibility and can be used to model most real-world DVLs.  The `teledyne_whn_macro` macro is essentially a wrapper for this macro and can be used as an example for its use.  Parameters are as follows:
+    -- *namespace*:  string namespace in which all of the links and ROS topics reside.
+    -- *suffix*:  arbitrary identifying suffix that is added to all joint and link names.
+    -- *parent_link*:  robot link to which the sensor link will be attached.
+    -- *topic*:  ROS topic to which DVL sensor messages are to be published.
+    -- *update_rate*:  rate at which DVL sensor messages are to be published (Hz).
+    -- *reference_frame:  static reference frame (i.e., world frame) in which the robot maneuvers.
+    -- *noise_sigma*:  standard deviation of the velocity solution (only used for covariance matrix computation).
+    -- *noise_amplitude*:  standard deviation of the Gaussian noise added to each of the computed linear velocity vectors.
+    -- *\*origin*:  block parameter for the location of the DVL sensor link on the robot.
+
+- teledyne_whn_standalone.xacro
+
+    The `teledyne_whn_uuvsim_description` package `urdf/teledyne_whn_standalone` Xacro file utilizes the macros provided in `teledyne_whn.xacro` to create with a single WHN600 DVL attached to a dimensionless link.  The resulting URDF model is suitable for upload to the ROS parameter server for subsequent insertion into Gazebo scenes. This macro is utilized by the `dave_sensor_launch/teledyne_whn_uuvsim_demo.launch` described above.
 
 #### Additional Macro Files
 
@@ -167,6 +175,7 @@ URDF models and Xacro macros for use in implementing the WHN DVL in other Gazebo
 ### teledyne\_whn\_dsl\_demo.launch
 
 #### Launch and Operation
+
 The `teledyne_whn_dsl_demo.launch` file instantiates a Gazebo world (`dave_worlds/ocean_waves.world` by default) containing a single Teledyne DVL attached to a dimensionless link (the DVL is not within the world's camera field of view, but the it is located just below the water's surface near the model's center as depicted below).
 
 After approximately 10 seconds, the DVL will begin moving in a descending left-handed octagon pattern.  It will continue with this pattern until impacting the bottom.  The simulation will proceed as depicted in the figures above except that the individual sonar beams will not be visible.
@@ -174,6 +183,7 @@ After approximately 10 seconds, the DVL will begin moving in a descending left-h
 Available launch arguments are the same as described for previous launch files.
 
 #### ROS Topics
+
 The following ROS topics are relevant:
 
 - **/whn/dvl** (`ds_sensor_msgs/Dvl`): Provides current DVL sensor status and information.  Information that is correctly represented are linear velocity and covariance, individual sonar ranges and covariance, individual sonar beam unit vectors (in the DVL reference frame).  Additional message fields are either not currently implemented by the sensor or plugin (e.g., raw velocity and covariance) or are fixed to align with static sensor and plugin implementations (e.g., velocity_mode, coordinate_mode, and dvl_type).
@@ -226,6 +236,7 @@ rqt_plot /gazebo/model_states/pose[2]/position/z /gazebo/model_states/pose[3]/po
 ### dave\_dvl\_demo\_dsl.launch
 
 #### Launch and Operation
+
 The `dave_dvl_demo_dsl.launch` file uses macros from a `teledyne_whn_dsl_description` package Xacro file to generate a WHN600 DVL model mounted on a medium-sized UUV (the Caldus UUV from the `caldus_description` package).  As with the standalone DVL example, the model is not within the world's camera field of view, but can be located by choosing to "Follow" or "Move to" the caldus model once the simulation is running.
 
 The UUV can be maneuvered using the [Logitech F310 Gamepad](/dave.doc/contents/Logitech-F310-Gamepad-Mapping) or other joystick.
@@ -243,35 +254,40 @@ The RViz visualization does not provide any sensed information, but the displaye
 Water tracking can be tested and observed with this macro as [previously described](#whoi_water_tracking).
 
 ### WHOI DSL Models and Macros
+
 #### Teledyne WHN Model (`models/dave_sensor_models/models/teledyne_whn_dsl/model.sdf`)
+
 The `teledyne_whn_dsl` model is a self-contained implementation of the Teledyne WND600 DVL in SDF format.  This model can be included in any SDF world and connected to a robot in that world through a joint connecting the model's `whn_base_link` to the robot's base link.  Because the WHOI DSL environment implements a custom Gazebo DVL sensor rather than relying on embedded Ray sensors, this model's plugin does not require access to externally generated transforms and will work as is.  It does however require the `dsros_sensors` library to be loaded when Gazebo is started (see tutorial launch files for load command).
 
 
 #### Teledyne WHN Macros (`urdf_whoi/teledyne_whn.xacro`)
-##### teledyne_whn.xacro
-The `teledyne_wyn_dsl_description` package `urdf/teledyne_whn` Xacro file provides a set of macros for the addition of a Teledyne WHN600 DVL to an arbitrary Xacro-generated robot model.  A single top-level macro is provided:
 
-- **teledyne\_whn\_macro**: provides for the generation of a DVL model with a user-specified parameters.  The macro generates the DVL link, its sensor (both the Gazebo sensor element and plugin), and the joint attaching the DVL to a robot.  Parameters are as follows:
--- *name*:  string name of the sensor that will be incorporated into link, joint, and sensor names.
--- *namespace*:  string namespace in which all of the ROS topics reside.
--- *xyz*:  location on the DVL link at which the visual and collision elements are centered (inertial is centered on the origin).
--- *dvl_topic*:  ROS topic to which DVL sensor messages will be published.
--- *ranges_topic*:  ROS topic to which consolidated sonar beam range messages will be published.
--- *robot_link*:  robot link to which the sensor link will be attached.
--- *joint_xyz*:  position on the robot to which the DVL is to be mounted.
+- teledyne_whn.xacro
 
-##### teledyne_whn_standalone.xacro
-The `teledyne_wyn_dsl_description` package `urdf/teledyne_whn_standalone` Xacro file utilizes the macro provided in `teledyne_whn.xacro` to create with a single WHN600 DVL attached to a dimensionless link.  The resulting URDF model is suitable for upload to the ROS parameter server for subsequent insertion into Gazebo scenes. This macro is utilized by the `dave_sensor_launch/teledyne_whn_dsl_demo.launch` described above.
+    The `teledyne_wyn_dsl_description` package `urdf/teledyne_whn` Xacro file provides a set of macros for the addition of a Teledyne WHN600 DVL to an arbitrary Xacro-generated robot model.  A single top-level macro is provided:
+
+    - **teledyne\_whn\_macro**: provides for the generation of a DVL model with a user-specified parameters.  The macro generates the DVL link, its sensor (both the Gazebo sensor element and plugin), and the joint attaching the DVL to a robot.  Parameters are as follows:
+    -- *name*:  string name of the sensor that will be incorporated into link, joint, and sensor names.
+    -- *namespace*:  string namespace in which all of the ROS topics reside.
+    -- *xyz*:  location on the DVL link at which the visual and collision elements are centered (inertial is centered on the origin).
+    -- *dvl_topic*:  ROS topic to which DVL sensor messages will be published.
+    -- *ranges_topic*:  ROS topic to which consolidated sonar beam range messages will be published.
+    -- *robot_link*:  robot link to which the sensor link will be attached.
+    -- *joint_xyz*:  position on the robot to which the DVL is to be mounted.
+
+- teledyne_whn_standalone.xacro
+
+    The `teledyne_wyn_dsl_description` package `urdf/teledyne_whn_standalone` Xacro file utilizes the macro provided in `teledyne_whn.xacro` to create with a single WHN600 DVL attached to a dimensionless link.  The resulting URDF model is suitable for upload to the ROS parameter server for subsequent insertion into Gazebo scenes. This macro is utilized by the `dave_sensor_launch/teledyne_whn_dsl_demo.launch` described above.
 
 
-#### Additional Macro Files
+- Additional Macro Files
 
-The following Xacro files are provided for the generation of URDF WHOI DSL plugin models for different commercially available DVLs.  Each provides the same top-level macro as the `teledyne_whn_dsl_description` package `urdf/teledyne_whn.xacro` and implement sensor characteristics as specified in the vendor-provided datasheets.  They can be utilized in the same manner as the macros in `urdf/teledyne_whn.xacro`.
+    The following Xacro files are provided for the generation of URDF WHOI DSL plugin models for different commercially available DVLs.  Each provides the same top-level macro as the `teledyne_whn_dsl_description` package `urdf/teledyne_whn.xacro` and implement sensor characteristics as specified in the vendor-provided datasheets.  They can be utilized in the same manner as the macros in `urdf/teledyne_whn.xacro`.
 
-- **Nortek DVL500-300m** (located in the `nortek_dvl500_300_dsl_description` package)
-- **Nortek DVL500-6000m** (located in the `nortek_dvl500_6000_dsl_description` package)
-- **Nortek DVL1000-300m** (located in the `nortek_dvl1000_300_dsl_description` package)
-- **Nortek DVL1000-4000m** (located in the `nortek_dvl1000_4000_dsl_description` package)
-- **Sonardyne Syrinx 600** (located in the `sonardyne_syrinx600_dsl_description` package)
-- **Teledyne Explorer 1000 (Phased Array)** (located in the `teledyne_explorer1000_dsl_description` package)
-- **Teledyne Explorer 4000 (Piston)** (located in the `teledyne_explorer4000_dsl_description` package)
+    - **Nortek DVL500-300m** (located in the `nortek_dvl500_300_dsl_description` package)
+    - **Nortek DVL500-6000m** (located in the `nortek_dvl500_6000_dsl_description` package)
+    - **Nortek DVL1000-300m** (located in the `nortek_dvl1000_300_dsl_description` package)
+    - **Nortek DVL1000-4000m** (located in the `nortek_dvl1000_4000_dsl_description` package)
+    - **Sonardyne Syrinx 600** (located in the `sonardyne_syrinx600_dsl_description` package)
+    - **Teledyne Explorer 1000 (Phased Array)** (located in the `teledyne_explorer1000_dsl_description` package)
+    - **Teledyne Explorer 4000 (Piston)** (located in the `teledyne_explorer4000_dsl_description` package)
