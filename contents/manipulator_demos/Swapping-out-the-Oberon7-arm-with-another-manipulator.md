@@ -76,11 +76,13 @@ To swap out the oberon7 arm with something else, some of these files need to be 
 ## Loading the uuv with your own manipulator arm
 
 * Make a copy of the `uuv_dave/urdf/rexrov_oberon7.xacro` file and call it `rexrov_<arm_name>.xacro`. In that file you will see the following lines.
+
 ```
 <xacro:include filename="$(find uuv_dave)/urdf/oberon7_default.xacro" />
 ```
 
 and line
+
 ```
   <xacro:oberon7 namespace="oberon7" parent="$(arg namespace)/base_link">
     <origin xyz="1.3 -0.5 -0.615" rpy="0 0 0"/>
@@ -90,11 +92,13 @@ and line
 The first one includes the xacro file that file that defines the macro of the manipulator. The second set of lines call that macro. So in your case you should edit these lines to include the xacro file that defines a macro for your own robot, then call on your own macro.
 
 In case of the predator arm, it looks something like this.
+
 ```
 <xacro:include filename="$(find uuv_dave)/urdf/predator_default.xacro" />
 ```
 
 and
+
 ```
   <xacro:predator namespace="predator" parent="$(arg namespace)/base_link">
     <origin xyz="1.3 -0.5 -0.615" rpy="0 0 0"/>

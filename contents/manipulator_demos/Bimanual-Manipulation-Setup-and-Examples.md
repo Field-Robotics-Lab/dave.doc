@@ -50,7 +50,7 @@ In each of the two launch files for this example we added a `group ns`. This all
 
 From `dave_two_arm_demo.launch`
 
-```xacro
+```
 <group ns="robot1">
     <include file="$(find oberon7_gazebo)/launch/oberon7_multi.launch">
         <arg name="xyzpos" value="0.0 0.0 2.0"/>
@@ -61,7 +61,7 @@ From `dave_two_arm_demo.launch`
 
 From `oberon7_multi_planning_execution.launch`
 
-```xacro
+```
 <group ns="robot1">
     <arg name="moveit_controller_manager" default="oberon7" />
     ...
