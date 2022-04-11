@@ -38,13 +38,13 @@ The physical BlueView P900-90 operates at 900 kHz.  The sensor characteristics a
 
 The parameters of the [UUV Simulator image sonar plugin](/dave.doc/contents/image_sonar_description) is configured in the [blueview_p900/model.sdf](https://github.com/Field-Robotics-Lab/nps_uw_sensors_gazebo/blob/master/models/blueview_p900/model.sdf).  The horizontal field of view is set to 90 degrees.  The sonar simulation is based on a depth camera image with a width of 512 points and a height of 114 (corresponding to 20 degree vertical FOV), resulting in 58,368 depth points that are provided as a ROS point cloud.
 
-![image](/dave.doc/images/p900_points.png)
+![image](images/p900_points.png)
 
 The plugin further processes this depth image to generate a 2D sonargram.
 
-![image](/dave.doc/images/p900_sonar.png)
+![image](images/p900_sonar.png)
 
-  ![image](/dave.doc/images/p900_tank.png)
+  ![image](images/p900_tank.png)
 
   Video: https://drive.google.com/file/d/1u5Nix6vD8MxADoiyXhxg3vwYggv_2qJ7/view?usp=sharing
 
@@ -91,11 +91,11 @@ The launch file also opens rqt and rviz to visualize the plugin generated images
 
 If everything works, you should see these three windows
 
-![image](/dave.doc/images/fls_standalone.png)
+![image](images/fls_standalone.png)
 
-![image](/dave.doc/images/blueview_visualize.png)
+![image](images/blueview_visualize.png)
 
-![image](/dave.doc/images/blueview_rviz.png)
+![image](images/blueview_rviz.png)
 
 Below provides an outline of the steps taken to create this example.
 
@@ -116,7 +116,7 @@ roslaunch gazebo_ros empty_world.launch
 
 You should now be able to graphically insert the model and see it in Gazebo.  Go to Insert tab in the GUI and navigation tot he blueview_p900 model.  If successful you should see something like this...
 
-![image](/dave.doc/images/blueview_insert.png)
+![image](images/blueview_insert.png)
 
 
 ### Create a world file with the new model already in place
@@ -140,13 +140,13 @@ There is not a lot of documentation on the Gazebo depth camera: [Use a Gazebo De
 
 ```rosrun rqt_image_view rqt_image_view ```
 
-![image](/dave.doc/images/standalone_sidebyside.png)
+![image](images/standalone_sidebyside.png)
 
 Use the rqt_image_view to look at the other image types to get a sense of the image generation process.
 
 
 Can also visualize using the Gazebo Topic Viewer
 
-![image](/dave.doc/images/blueview_gazeboviewer.png)
+![image](images/blueview_gazeboviewer.png)
 
 Then you can use Gazebo Translation and Rotation modes to move around the sonar head or the targets.  Here is a [video demonstration](https://vimeo.com/398555796) of what you should see.
