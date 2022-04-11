@@ -554,7 +554,7 @@ GPU Ray version of the multibeam sonar can fully support local seach scenarios w
 
 - Raster version
 
-   ```bash
+   ```
     # generic sdf; not urdf
     roslaunch nps_uw_multibeam_sonar local_search_blueview_p900_nps_multibeam_raster.launch
     # urdf standalone
@@ -567,7 +567,7 @@ GPU Ray version of the multibeam sonar can fully support local seach scenarios w
 
 - Ray version
 
-   ```bash
+   ```
     # generic sdf; not urdf
     roslaunch nps_uw_multibeam_sonar local_search_blueview_p900_nps_multibeam_ray.launch
     # urdf standalone
