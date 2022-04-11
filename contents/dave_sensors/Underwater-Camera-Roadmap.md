@@ -11,8 +11,8 @@ has_children: false
 ## Turbidity and Light Attenuation
 Turbidity and light attenuation are important underwater effects that give water its volume. In order to get some effects (volumetric shadows, god rays, etc…) working, water must be rendered as a volume / participating medium.
 
-<img src="https://user-images.githubusercontent.com/14305903/159775251-35f5e1f4-e30f-41ec-89c7-0ef3636f382f.png" width=45% height=45%>
-<img src="https://user-images.githubusercontent.com/14305903/159775255-482342b1-cc19-4cae-9e1d-7d66487fb723.png" width=45% height=45%>
+[[https://user-images.githubusercontent.com/14305903/159775251-35f5e1f4-e30f-41ec-89c7-0ef3636f382f.png]]
+[[https://user-images.githubusercontent.com/14305903/159775255-482342b1-cc19-4cae-9e1d-7d66487fb723.png]]
 
 It becomes much more difficult to see at depths so a light source near the camera may need to be implemented. Attenuation and in-scattering can be adjusted to an amount that doesn’t degrade visibility at depths.
 

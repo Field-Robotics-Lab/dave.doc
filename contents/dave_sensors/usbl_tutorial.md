@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Ultra Short Baseline (USBL) Gazebo Plugin Tutorial
+title: Ultra Short Baseline
 parent: Dave Sensors
 nav_order: 4
 has_children: false

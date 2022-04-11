@@ -15,10 +15,10 @@ has_children: false
 
 * [Background](#background)
   * [Basic definitions and implementation](#basic-definitions-and-implementation)
-* [Constant ocean current quickstart](#Constant-ocean-current-quickstart)
-* [Stratified ocean current quickstart](#Stratified-ocean-current-quickstart)
-* [Multiple vehicle support](#Stratified-ocean-current-plugin-with-multiple-vehicle-support)
-* [Tidal Oscillation support](#Tidal-oscillation-support)
+* [Constant ocean current quickstart](#constant-ocean-current-quickstart)
+* [Stratified ocean current quickstart](#stratified-ocean-current-quickstart)
+* [Multiple vehicle support](#stratified-ocean-current-plugin-with-multiple-vehicle-support)
+* [Tidal Oscillation support](#tidal-oscillation-support)
 
 This document describes the capabilities of the ocean current plugin and provides tutorials showing how to modify its behavior.
 
