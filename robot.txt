@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://field-robotics-lab.github.io/dave.doc/sitemap.xml
