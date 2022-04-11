@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Bathymetry Integration
+title: Dynamic Bathymetry
 parent: Dave Environments
 nav_order: 2
 has_children: false
@@ -16,9 +16,9 @@ has_children: false
 * [Overview](#overview)
 * [Tutorial: How-to](#tutorial-how-to)
    * [Quickstart](#quickstart)
-   * [Bathymetry Plugin settings](#Bathymetry-plugin-settings)
-   * [Initial positioning of the vehicle](#Initial-positioning-of-the-vehicle)
-   * [GPS Viewer](#GPS-Viewer)
+   * [Bathymetry Plugin settings](#bathymetry-plugin-settings)
+   * [Initial positioning of the vehicle](#initial-positioning-of-the-vehicle)
+   * [GPS Viewer](#gps-viewer)
 * [For more bathymetry tiles](#importing-more-bathymetry-data)
 
 # Overview

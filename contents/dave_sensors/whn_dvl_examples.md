@@ -1,6 +1,6 @@
 ---
 layout: default
-title: DVL Examples (ROS Package)
+title: DVL Examples
 parent: Doppler Velocity Log
 grand_parent: Dave Sensors
 nav_order: 1

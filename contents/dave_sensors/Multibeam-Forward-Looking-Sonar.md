@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Multibeam Forwared Looking Sonar
+title: Multibeam Sonar
 parent: Dave Sensors
 nav_order: 1
 has_children: false
