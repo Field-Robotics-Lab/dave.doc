@@ -106,6 +106,7 @@ plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-feed
+  - jekyll-youtube
 
 kramdown:
   syntax_highlighter_opts:
