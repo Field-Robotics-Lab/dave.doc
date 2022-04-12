@@ -18,8 +18,6 @@ DAVE Aquatic Virtual Environment(DAVE) is a simulation environment to support th
 
       [![Release 4.3.1 Highlight Video](https://user-images.githubusercontent.com/7955120/160326859-5e360b2b-c45f-4900-9750-6803cce6fa46.png)](https://www.youtube.com/watch?v=5HixvTjXzsg)
 
-       {% youtube "https://www.youtube.com/watch?v=5HixvTjXzsg" %}
-
     * [Release 2.0.0 Highlight Video, September 2020](https://vimeo.com/462024036)
         * Narrated version of the [Electrical Mating](https://vimeo.com/463124725) demonstration.
     * [Release 1.0.0 Highlight Video, June 2020](https://vimeo.com/426414758).
