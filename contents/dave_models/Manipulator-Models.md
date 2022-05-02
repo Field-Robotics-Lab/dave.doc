@@ -1,5 +1,5 @@
 ---
-last_modified_date: 08/06/2021
+last_modified_date: 06/08/2021
 layout: default
 title: Manipulator Models
 parent: Vehicle Models

@@ -1,5 +1,5 @@
 ---
-last_modified_date: 07/27/2021
+last_modified_date: 27/07/2021
 layout: default
 title: DVL Seabed Gradient
 parent: Doppler Velocity Log

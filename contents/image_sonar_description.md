@@ -1,5 +1,5 @@
 ---
-last_modified_date: 08/20/2020
+last_modified_date: 20/08/2020
 layout: default
 title: Image sonars
 nav_exclude: true

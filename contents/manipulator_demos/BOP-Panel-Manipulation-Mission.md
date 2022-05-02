@@ -1,5 +1,5 @@
 ---
-last_modified_date: 09/03/2021
+last_modified_date: 03/09/2021
 layout: default
 title: BOP Panel Manipulation
 parent: Manipulator Demos

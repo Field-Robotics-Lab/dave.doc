@@ -1,5 +1,5 @@
 ---
-last_modified_date: 08/14/2021
+last_modified_date: 14/08/2021
 layout: default
 title: Swapping arms
 parent: Manipulator Demos
