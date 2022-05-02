@@ -2,6 +2,7 @@
 last_modified_date: 11/04/2022
 layout: default
 title: Multibeam Sonar
+description: "Physics-based modelling and simulation of Multibeam Echosounder perception in Gazebo Classic, Multibeam Sonar Simulation"
 parent: Dave Sensors
 nav_order: 1
 has_children: false
