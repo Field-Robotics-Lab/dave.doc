@@ -2,7 +2,7 @@
 layout: default
 title: Home
 nav_order: 1
-description: "Project DAVE"
+description: "Project DAVE, a open-source underwater robotics simulation environment. DAVE Aquatic Virtual Environment(DAVE) is a simulation environment to support the rapid testing and evaluation of underwater robotic solutions, specifically underwater vehicles (AUVs/UUVs) operating autonomously and completing missions that involve autonomous maniputlation.  The environment is built upon existing ROS and Gazebo infrastructure, particularly the UUV Simulator and WHOI's ds_sim. Github hosted developed by Fields Robotics Laboratory at Naval Postgraduate School."
 permalink: /
 last_modified_date: 11/04/2022
 ---
