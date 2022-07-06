@@ -52,6 +52,7 @@ Previous sonar sensor plugins were based on image processing realms by translati
   * [Parameters](#parameters)
   * [Variational Reflectivity](#variational-reflectivity)
   * [Output ROS msg](#output-ros-msg)
+      * [Rviz Sonar Image Viewer Plugin](#rviz-sonar-image-viewer-plugin)
 * [Scenario demonstrations](#scenario-demonstrations)
   * [Local area search scenarios](#local-area-search-scenarios)
   * [Degradaded object detection scenarios](#degradaded-object-detection-scenarios)
@@ -118,11 +119,18 @@ The model is based on a ray-based spatial discretization of the model facets, be
 ## Option A. Use Docker
 The simplest way to prepare your machine with the CUDA library would be to use the Docker environment. Following commands include `-c`, which provides the Cuda library.
 ```
-# Uninstall rocker
-sudo apt-get remove python3-rocker
-sudo python3 -m pip uninstall rocker
+# Install virtual environment (venv) for pip
+sudo apt-get install python3-venv
+
+# Create a venv
+mkdir -p ~/rocker_venv_cuda
+python3 -m venv ~/rocker_venv_cuda
+
+# initiate venv
+. ~/rocker_venv_cuda/bin/activate
 
 # Clone rocker fork by woensug choi
+cd ~/rocker_venv_cuda
 git clone git@github.com:woensug-choi/rocker.git
 cd rocker
 
@@ -242,7 +250,7 @@ git clone https://github.com/Field-Robotics-Lab/nps_uw_multibeam_sonar.git
 ```
 
 #### Acoustic message repository
-Final results are exported as a [SonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/SonarImage.msg) of UW APL's sonar image msg format. Make sure to include the repository on the workspace before compiling.
+Final results are exported as a [ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg) of UW APL's sonar image msg format. Make sure to include the repository on the workspace before compiling.
 ```
 git clone https://github.com/apl-ocean-engineering/hydrographic_msgs.git
 ```
@@ -301,7 +309,7 @@ There are two types of multibeam sonar plugin in the repository. Raster version 
 
 ## Gazebo Coordinate Frames
 
-The plugin outputs sonar data using the [acoustic_msgs/SonarImage](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/SonarImage.msg) ROS message.  This message defines the bearing of each sonar beam as a rotation around a **downward-pointing** axis, such that negative bearings are to port of forward and positive to starboard (if the sonar is installed in it"s "typical" forward-looking orientation).
+The plugin outputs sonar data using the [acoustic_msgs/ProjectedSonarImage](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg) ROS message.  This message defines the bearing of each sonar beam as a rotation around a **downward-pointing** axis, such that negative bearings are to port of forward and positive to starboard (if the sonar is installed in it"s "typical" forward-looking orientation).
 
 The plugin will use the Gazebo frame name as the `frame_id` in the ROS message. For the sonar data to re-project correctly into 3D space, it **must** be attached to an X-Forward, Y-Starboard, Z-Down frame in Gazebo.
 
@@ -539,8 +547,29 @@ The final output of the sonar image is sent in two types.
   - This is a msg used internally to plot using with `image_view` package of ROS.
   - The data is generated using OpenCV's `CV_8UC1` format, normalized with `cv::NORM_MINMAX`, colorized with `cv::COLORMAP_HOT`, and changed into msg format using `BGR8` format
 - Topic name `sonar_image_raw`
-  - This is a msg matched with [UW APL's SonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/SonarImage.msg).
+  - This is a msg matched with [UW APL's ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg#L5).
   - The data is in `uint8`.
+
+#### Rviz Sonar Image Viewer Plugin
+There is a dedicated sonar image viewer rviz plugin developed by Roland Arsenault.
+To use this, include rviz_sonar_image repository in the `src` directory and compile them.
+
+```bash
+# clone and compile rviz_sonar_image repo
+cd ~/uuv_ws/src/
+git clone https://github.com/rolker/rviz_sonar_image
+cd ../
+catkin build rviz_sonar_image
+
+# run rviz after running the launch file
+rviz
+```
+
+At rviz, add `ProjectedSonarImageDisplay` and select `sonar_image_raw` topic of the sonar being published.
+
+![/images/rviz_sonar_image.png](../images/rviz_sonar_image_setting.png)
+![/images/rviz_sonar_image_example.png](../images/rviz_sonar_image_example.png)
+
 
 
 # Scenario demonstrations
