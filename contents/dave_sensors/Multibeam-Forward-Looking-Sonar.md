@@ -52,6 +52,7 @@ Previous sonar sensor plugins were based on image processing realms by translati
   * [Parameters](#parameters)
   * [Variational Reflectivity](#variational-reflectivity)
   * [Output ROS msg](#output-ros-msg)
+      * [Rviz Sonar Image Viewer Plugin](#rviz-sonar-image-viewer-plugin)
 * [Scenario demonstrations](#scenario-demonstrations)
   * [Local area search scenarios](#local-area-search-scenarios)
   * [Degradaded object detection scenarios](#degradaded-object-detection-scenarios)
@@ -548,6 +549,27 @@ The final output of the sonar image is sent in two types.
 - Topic name `sonar_image_raw`
   - This is a msg matched with [UW APL's ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg#L5).
   - The data is in `uint8`.
+
+#### Rviz Sonar Image Viewer Plugin
+There is a dedicated sonar image viewer rviz plugin developed by Roland Arsenault.
+To use this, include rviz_sonar_image repository in the `src` directory and compile them.
+
+```bash
+# clone and compile rviz_sonar_image repo
+cd ~/uuv_ws/src/
+git clone https://github.com/rolker/rviz_sonar_image
+cd ../
+catkin build rviz_sonar_image
+
+# run rviz after running the launch file
+rviz
+```
+
+At rviz, add `ProjectedSonarImageDisplay` and select `sonar_image_raw` topic of the sonar being published.
+
+![/images/rviz_sonar_image.png](../images/rviz_sonar_image_setting.png)
+![/images/rviz_sonar_image_example.png](../images/rviz_sonar_image_example.png)
+
 
 
 # Scenario demonstrations
