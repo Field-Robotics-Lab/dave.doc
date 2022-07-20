@@ -129,15 +129,10 @@ python3 -m venv ~/rocker_venv_cuda
 # initiate venv
 . ~/rocker_venv_cuda/bin/activate
 
-# Clone rocker fork by woensug choi
+# Install rocker from osrf if not installed
 cd ~/rocker_venv_cuda
-git clone git@github.com:woensug-choi/rocker.git
+git clone https://github.com/osrf/rocker.git
 cd rocker
-
-# Change to cuda-dev branch
-git checkout cuda-dev
-
-# install
 sudo python3 -m pip install .
 
 # clone dockwater and change to cuda-dev branch
