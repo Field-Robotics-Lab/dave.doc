@@ -130,8 +130,7 @@ python3 -m venv ~/rocker_venv_cuda
 
 # Install rocker from osrf if not installed
 cd ~/rocker_venv_cuda
-git clone git@github.com:woensug-choi/rocker.git
-git checkout cuda-devel
+git clone https://github.com/osrf/rocker.git
 cd rocker
 python3 -m pip install .
 
@@ -146,6 +145,9 @@ git checkout cuda-dev
 ./run.bash -c noetic:latest
 
 # To open another terminal inside docker container,
+# At new terminal window
+. ~/rocker_venv_cuda/bin/activate
+cd ~/rocker_venv_cuda/dockwater
 ./join.bash noetic_runtime
 ```
 
