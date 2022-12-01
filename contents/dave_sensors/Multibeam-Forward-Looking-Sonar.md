@@ -143,12 +143,6 @@ git checkout cuda-dev
 # Build and run docker image (This may take up to 30 min to finish at the first time)
 ./build.bash noetic
 ./run.bash -c noetic:latest
-
-# To open another terminal inside docker container,
-# At new terminal window
-. ~/rocker_venv_cuda/bin/activate
-cd ~/rocker_venv_cuda/dockwater
-./join.bash noetic_runtime
 ```
 
 When docker environment is ready, clone multibeam forward-looking sonar repo and compile
@@ -163,6 +157,16 @@ cd ~/uuv_ws
 catkin build
 source ~/uuv_ws/devel/setup.bash
 roslaunch nps_uw_multibeam_sonar sonar_tank_blueview_p900_nps_multibeam.launch
+```
+
+```
+# To open another terminal inside docker container,
+# At new terminal window
+. ~/rocker_venv_cuda/bin/activate
+cd ~/rocker_venv_cuda/dockwater
+./join.bash noetic_runtime
+cd ~/uuv_ws
+source devel/setup.bash
 ```
 
 ## Option B. Install on the Host
