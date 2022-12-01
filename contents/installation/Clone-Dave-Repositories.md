@@ -30,6 +30,16 @@ cd ~/uuv_ws/src
 vcs import --skip-existing --input dave/extras/repos/dave_sim.repos .
 ```
 
+If you get error `Could not determine ref type of version: git@github.com: Permission denied (publickey).`, try following
+[Git Hub Error Permission Denied Publickey](https://docs.github.com/en/authentication/troubleshooting-ssh/error-permission-denied-publickey)
+and remove clone failed empty directory and try again
+```
+cd ~/uuv_ws/src
+rm -rf dockwater ds_msgs ds_sim eca_a9 rexrov2 uuv_manipulators uuv_simulator
+vcs import --skip-existing --input dave/extras/repos/dave_sim.repos .
+```
+
+
 ### OPTIONAL: GPU Multibeam sonar
 ```diff
 - DO NOT INCLUDE THIS if you are not using multibeam sonar.
