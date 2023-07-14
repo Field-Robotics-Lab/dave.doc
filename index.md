@@ -44,11 +44,11 @@ In addition to our officially supported, core features, Dave also includes a num
 
 If you use this simulator for your project, please cite the following paper:
 
-> Mabel M. Zhang, Woen-Sug Choi, Jessica Herman, Duane Davis, Carson Vogt, Michael McCarrin, Yadunund Vijay, Dharini Dutia, William Lew, Steven Peters, and Brian Bingham, "DAVE Aquatic Virtual Environment: Toward a General Underwater Robotics Simulator," in *IEEE/OES Autonomous Underwater Vehicle (AUV) Symposium*, Sep 2022.
+> Mabel M. Zhang, Woen-Sug Choi, Jessica Herman, Duane Davis, Carson Vogt, Michael McCarrin, Yadunund Vijay, Dharini Dutia, William Lew, Steven Peters, and Brian Bingham, "DAVE Aquatic Virtual Environment: Toward a General Underwater Robotics Simulator," in *IEEE/OES Autonomous Underwater Vehicle (AUV) Symposium*, 2022. doi: [10.1109/AUV53081.2022.9965808](https://doi.org/10.1109/AUV53081.2022.9965808)
 
 If you use the multibeam sonar simulation, please cite the following paper:
 
-> Woen-Sug Choi, Derek R. Olson, Duane Davis, Mabel Zhang, Andy Racson, Brian Bingham, Michael McCarrin, Carson Vogt, and Jessica Herman, "Physics-based modelling and simulation of Multibeam Echosounder perception for Autonomous Underwater Manipulation," *Frontiers in Robotics and AI* 8:706646. doi: [10.3389/frobt.2021.706646](https://www.frontiersin.org/articles/10.3389/frobt.2021.706646)
+> Woen-Sug Choi, Derek R. Olson, Duane Davis, Mabel Zhang, Andy Racson, Brian Bingham, Michael McCarrin, Carson Vogt, and Jessica Herman, "Physics-based modelling and simulation of Multibeam Echosounder perception for Autonomous Underwater Manipulation," *Frontiers in Robotics and AI*, 2021. doi: [10.3389/frobt.2021.706646](https://www.frontiersin.org/articles/10.3389/frobt.2021.706646)
 
 # Tutorials and Demonstrations
 
