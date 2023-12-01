@@ -1,5 +1,5 @@
 ---
-last_modified_date: 06/11/2021
+last_modified_date: 29/11/2023
 layout: default
 title: Get Source Codes
 nav_order: 4
@@ -13,15 +13,18 @@ Project Dave consists of this repository along with other UUV components availab
 ### Clone Dave
 
 Clone this repository and other relevant repositories provided under Field-Robotics-Lab:
-  ```bash
-  mkdir -p ~/uuv_ws/src
-  cd ~/uuv_ws/src
-  git clone https://github.com/Field-Robotics-Lab/dave.git
-  ```
+```bash
+mkdir -p ~/uuv_ws/src
+cd ~/uuv_ws/src
+git clone https://github.com/Field-Robotics-Lab/dave.git
+```
 
 ### Use `vcs` to clone source dependencies
 
 If not already installed - [install vcstool](http://wiki.ros.org/vcstool).
+```bash
+sudo pip3 install -U vcstool
+```
 
 Use `vcs` to read the input file and clone required dependencies
 
@@ -38,7 +41,6 @@ cd ~/uuv_ws/src
 rm -rf dockwater ds_msgs ds_sim eca_a9 rexrov2 uuv_manipulators uuv_simulator
 vcs import --skip-existing --input dave/extras/repos/dave_sim.repos .
 ```
-
 
 ### OPTIONAL: GPU Multibeam sonar
 ```diff
