@@ -143,13 +143,10 @@ The model is based on a ray-based spatial discretization of the model facets, be
 
 The CUDA library depend on compatability support of NVIDIA drivers ([CUDA Compatability](https://docs.nvidia.com/deploy/cuda-compatibility/)). Also, old CUDA library versions are not officially supported for lower version of UBUNTU.
 
-Here, I've tested on Ubuntu 22.04, NVIDIA driver 535, CUDA 12.2. The host machine needs to have correct versions installed even using Docker. You can check your NVIDIA driver with `nvidia-smi` and CUDA version with `nvcc --version`.
+Here, I've tested on Ubuntu 22.04, NVIDIA driver 535, CUDA 12.2 using Docker. The host machine needs to have correct versions installed even using Docker. You can check your NVIDIA driver with `nvidia-smi` and CUDA version with `nvcc --version` inside and outside the Docker.
 
-If you are on 22.04, go with Install on the Host option since the Docker could install other version of NVIDIA driver and CUDA.
+## Install NVIDIA driver and CUDA on Host
 
-## Option A. Install on the Host
-
-### CUDA Library Installation
 This plugin demands high computation costs. GPU parallelization is used with the Nvidia CUDA Library. A discrete NVIDIA Graphics card is required.
 
 * The most straightforward way to install CUDA support on Ubuntu 22.04 is:
@@ -203,7 +200,7 @@ Also, check cuda version with `nvcc --version`. You would see version 12.3.
 
 ***
 
-## Option B. Use Docker
+## Use Docker to build and run
 This method assumes that you have followed [Use a Docker Image](/dave.doc/contents/installation/Docker-Development-Image) for system preparation.
 
 Following commands include `-c`, which provides the Cuda library pre-installed.

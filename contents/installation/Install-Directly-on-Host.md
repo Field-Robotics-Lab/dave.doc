@@ -8,7 +8,7 @@ parent: Installation
 
 This tutorial will walk you through the setup required to make a host machine ready to build and run the Dave simulations. Note that:
 * your host will need to satisfy the minimum [System Requirements](/dave.doc/contents/installation/System-Requirements), and
-* the steps below assume you are running **Ubuntu 20.04**. If you have **Ubuntu 22.04**, follow [Install on Ubuntu 22.04 Jammy][/dave.doc/contents/installation/Install-on-UbuntuJammy.md]
+* the steps below assume you are running **Ubuntu 20.04**.
 
 ## Install all dependencies
 Upgrade to the latest packages:
