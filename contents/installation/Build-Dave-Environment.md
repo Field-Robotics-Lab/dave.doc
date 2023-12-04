@@ -10,14 +10,24 @@ Now that you've set up your development environment and obtained the source code
 
 Here, [catkin_tools](https://catkin-tools.readthedocs.io/en/latest/installing.html) is used to build the project. It compiles in parallel using number of cores in the machine. It supports all the options of `catkin_make` and can be used as a replacement for `catkin_make` in most cases as it is a drop-in replacement for `catkin_make`.
 
+First install, catkin tools to use `catkin build`
+
+- If using Docker, you don't need this part. You already have `catkin build` available.
+
 ```bash
 # Install build tool catkin_tools
 pip3 install -U catkin_tools
 
 # Optionally, you can configure to install the packages
 catkin config --install
+```
 
-# Build (this may take upto about 10 minutes)
+Then build the source code (this may take upto about 10 minutes)
+
+- If using Docker, below commands should be typed inside the docker environment after `./run.bash dockwater:noetic` or `./run.bash -c dockwater:noetic`.
+
+```bash
+cd ~/uuv_ws
 catkin build
 ```
 
