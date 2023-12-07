@@ -32,7 +32,7 @@ Lastly, featuring multiple UUVs teleoperated using separate joysticks and arms c
 # Usage
 
 To launch the demo world
-
+- This takes quite some time to launch to load since it needs to download models from [Ignition Fuel](https://app.gazebosim.org/dashboard) online model library
 ```bash
 roslaunch dave_demo_launch dave_integrated_demo.launch
 ```

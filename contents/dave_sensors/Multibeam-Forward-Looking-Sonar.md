@@ -31,35 +31,60 @@ Previous sonar sensor plugins were based on image processing realms by translati
 <!--
  cat fls_model_standalone.md | ./gh-md-toc -
 -->
-* [Background](#background)
-   * [Characteristics/fidelity/Features](#characteristicsfidelityfeatures)
-   * [Related Works](#related-works)
-   * [Approach](#approach)
-      * [Active sonar equation](#active-sonar-equation)
-      * [Ray based beam sonar model](#ray-based-beam-sonar-model)
-      * [Beam pattern](#beam-pattern)
-      * [References](#references)
-* [Installation](#installation)
-  * [Option A. Use Docker](#option-a-use-docker)
-  * [Option B. Install on the Host](#option-b-install-on-the-host)
-* [Quickstart](#quickstart)
-  * [Launch Commands](#launch-commands)
-      * [Video clip](#video-clip)
-      * [Sonar image](#sonar-image)
-  * [Raster vs GPURay](#raster-vs-gpuray)
-* [Configuration](#configuration)
-  * [Gazebo Frames](#coordFrames)
-  * [Parameters](#parameters)
-  * [Variational Reflectivity](#variational-reflectivity)
-  * [Output ROS msg](#output-ros-msg)
-      * [Rviz Sonar Image Viewer Plugin](#rviz-sonar-image-viewer-plugin)
-* [Scenario demonstrations](#scenario-demonstrations)
-  * [Local area search scenarios](#local-area-search-scenarios)
-  * [Degradaded object detection scenarios](#degradaded-object-detection-scenarios)
-  * [Terrain Aided Navigation Scenarios](#terrain-aided-navigation-scenarios)
-* [Benchmarks](#benchmarks)
-  * [Computation time benchmark](#computation-time-benchmark)
-* [Acknowledge](#acknowledge)
+- [Introduction](#introduction)
+- [Contents](#contents)
+- [Background](#background)
+  - [Characteristics/fidelity/Features](#characteristicsfidelityfeatures)
+    - [Acoustics characteristics based on sonar equation (SNR = SL-2TL-(NL-DI)+TS)](#acoustics-characteristics-based-on-sonar-equation-snr--sl-2tl-nl-dits)
+    - [Higher fidelity acoustics characteristics](#higher-fidelity-acoustics-characteristics)
+    - [Plugin diagram](#plugin-diagram)
+  - [Related works](#related-works)
+  - [Approach](#approach)
+    - [Single beam sonar model](#single-beam-sonar-model)
+    - [Ray based beam sonar model](#ray-based-beam-sonar-model)
+    - [Beam pattern](#beam-pattern)
+    - [Overall procedures](#overall-procedures)
+    - [References](#references)
+- [Installation](#installation)
+  - [Option A. Use Docker](#option-a-use-docker)
+  - [Option B. Install on the Host](#option-b-install-on-the-host)
+    - [CUDA Library Installation](#cuda-library-installation)
+    - [Clone Repositories](#clone-repositories)
+    - [Option A. Using vcs tool](#option-a-using-vcs-tool)
+    - [Option B. Git clone manually](#option-b-git-clone-manually)
+      - [Multibeam sonar plugin repository](#multibeam-sonar-plugin-repository)
+      - [Acoustic message repository](#acoustic-message-repository)
+- [Quickstart](#quickstart)
+  - [Launch commands](#launch-commands)
+    - [Video clip](#video-clip)
+  - [Raster vs GPURay](#raster-vs-gpuray)
+    - [Sonar image](#sonar-image)
+- [Configurations](#configurations)
+  - [Gazebo Coordinate Frames](#gazebo-coordinate-frames)
+  - [Parameters](#parameters)
+    - [Viewport properties](#viewport-properties)
+    - [Sonar properties](#sonar-properties)
+    - [Plugin properties](#plugin-properties)
+  - [Variational Reflectivity](#variational-reflectivity)
+    - [Reflectivity by model names](#reflectivity-by-model-names)
+      - [How it works](#how-it-works)
+      - [Results](#results)
+    - [Reflectivity by custom SDF tags](#reflectivity-by-custom-sdf-tags)
+      - [Quickstart](#quickstart-1)
+      - [How it works](#how-it-works-1)
+      - [Results](#results-1)
+    - [Output ROS msg](#output-ros-msg)
+      - [Rviz Sonar Image Viewer Plugin](#rviz-sonar-image-viewer-plugin)
+- [Scenario demonstrations](#scenario-demonstrations)
+  - [Local area search scenarios](#local-area-search-scenarios)
+    - [GPU Ray vs Raster for local search scenarios](#gpu-ray-vs-raster-for-local-search-scenarios)
+    - [Video clip](#video-clip-1)
+  - [Degradaded object detection scenarios](#degradaded-object-detection-scenarios)
+    - [Examples](#examples)
+  - [Terrain Aided Navigation Scenarios](#terrain-aided-navigation-scenarios)
+- [Benchmarks](#benchmarks)
+  - [Computation time benchmark](#computation-time-benchmark)
+- [Acknowledge](#acknowledge)
 
 
 ***
@@ -115,9 +140,71 @@ The model is based on a ray-based spatial discretization of the model facets, be
 ***
 
 # Installation
-## Option A. Use Docker
-The simplest way to prepare your machine with the CUDA library would be to use the Docker environment. Following commands include `-c`, which provides the Cuda library.
+
+The CUDA library depend on compatability support of NVIDIA drivers ([CUDA Compatability](https://docs.nvidia.com/deploy/cuda-compatibility/)). Also, old CUDA library versions are not officially supported for lower version of UBUNTU.
+
+Here, I've tested on Ubuntu 22.04, NVIDIA driver 535, CUDA 12.2 using Docker. The host machine needs to have correct versions installed even using Docker. You can check your NVIDIA driver with `nvidia-smi` and CUDA version with `nvcc --version` inside and outside the Docker.
+
+## Install NVIDIA driver and CUDA on Host
+
+This plugin demands high computation costs. GPU parallelization is used with the Nvidia CUDA Library. A discrete NVIDIA Graphics card is required.
+
+* The most straightforward way to install CUDA support on Ubuntu 22.04 is:
+    * Install NVIDIA driver 545 at `additional drivers` on Ubuntu (Needs restart)
+        * Here's [one example with graphical and command-line options](https://linuxhint.com/update-nvidia-drivers-ubuntu-22-04-lts/).
+    
+    * Install CUDA 12.3
+    ```bash
+    wget https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-keyring_1.1-1_all.deb
+    sudo dpkg -i cuda-keyring_1.1-1_all.deb
+    sudo apt update
+    # Make sure you are getting 12.3 versions
+    sudo apt-get install cuda-toolkit
+    ```
+    * This installs the Nvidia CUDA toolkit from the Ubuntu repository.
+
+    The final step is to add paths to the Cuda executables and libraries.
+    Add these lines to `.bashrc` to include them. You may resource it by `source ~/.bshrc`
+
+    ```bash
+    export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}$
+    export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+    ```
+
+Once you are done, you will see something like the following msg with the `nvidia-smi` command.
+```bash
++---------------------------------------------------------------------------------------+
+| NVIDIA-SMI 545.23.08              Driver Version: 545.23.08    CUDA Version: 12.3     |
+|-----------------------------------------+----------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id        Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |         Memory-Usage | GPU-Util  Compute M. |
+|                                         |                      |               MIG M. |
+|=========================================+======================+======================|
+|   0  Quadro RTX 3000 with Max...    On  | 00000000:01:00.0 Off |                  N/A |
+| N/A   48C    P0              22W /  65W |    606MiB /  6144MiB |      9%      Default |
+|                                         |                      |                  N/A |
++-----------------------------------------+----------------------+----------------------+
+                                                                                         
++---------------------------------------------------------------------------------------+
+| Processes:                                                                            |
+|  GPU   GI   CI        PID   Type   Process name                            GPU Memory |
+|        ID   ID                                                             Usage      |
+|=======================================================================================|
+|    0   N/A  N/A      1400      G   /usr/lib/xorg/Xorg                            4MiB |
+|    0   N/A  N/A      1993    C+G   ...libexec/gnome-remote-desktop-daemon      596MiB |
++---------------------------------------------------------------------------------------+
 ```
+
+Also, check cuda version with `nvcc --version`. You would see version 12.3.
+
+
+***
+
+## Use Docker to build and run
+This method assumes that you have followed [Use a Docker Image](/dave.doc/contents/installation/Docker-Development-Image) for system preparation.
+
+Following commands include `-c`, which provides the Cuda library pre-installed.
+```bash
 # Install virtual environment (venv) for pip
 sudo apt-get install python3-venv
 
@@ -142,7 +229,8 @@ git checkout cuda-dev
 
 # Build and run docker image (This may take up to 30 min to finish at the first time)
 ./build.bash noetic
-./run.bash -c noetic:latest
+# the new run.bash command with -c option
+./run.bash -c dockwater:noetic
 ```
 
 When docker environment is ready, clone multibeam forward-looking sonar repo and compile
@@ -164,75 +252,10 @@ roslaunch nps_uw_multibeam_sonar sonar_tank_blueview_p900_nps_multibeam.launch
 # At new terminal window
 . ~/rocker_venv_cuda/bin/activate
 cd ~/rocker_venv_cuda/dockwater
-./join.bash noetic_runtime
+./join.bash dockwater_noetic_runtime
 cd ~/uuv_ws
 source devel/setup.bash
 ```
-
-## Option B. Install on the Host
-
-### CUDA Library Installation
-This plugin demands high computation costs. GPU parallelization is used with the Nvidia CUDA Library. A discrete NVIDIA Graphics card is required.
-
-* The most straightforward way to install CUDA support on Ubuntu 20 is:
-    ```
-    sudo apt update
-    sudo apt install nvidia-cuda-toolkit
-    ```
-    * This installs the Nvidia CUDA toolkit from the Ubuntu repository.
-    * If you prefer to install the latest version directly from the CUDA repository, instructions are available here: https://linuxconfig.org/how-to-install-cuda-on-ubuntu-20-04-focal-fossa-linux
-
-**Install Cuda**. Install CUDA 11.1 on the host machine (Recommended installation method is to use local run file [download link](https://developer.nvidia.com/cuda-11.1.1-download-archive?target_os=Linux&target_arch=x86_64&target_distro=Ubuntu&target_version=1804&target_type=runfilelocal)
-If you find a conflicting Nvidia driver, remove the previous driver and reinstall using a downloaded run file)
-This installation file will install both CUDA 11.1 and the NVIDIA graphics driver 455.32, which is best compatible with CUDA 11.1
-
-If you have already dealt with NVIDIA graphics driver at Ubuntu Software&Updates/Additional drivers to use proprietary drivers, revert it to use 'Using X.Org X server' to avoid 'The driver already installed, remove beforehand' kind of msg when you run the installation file.
-
-```bash
-# Remove nvidia drivers
-sudo apt remove nvidia-*
-sudo apt autoremove
-# Disable nouveau driver
-sudo bash -c "echo blacklist nouveau > /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
-sudo bash -c "echo options nouveau modeset=0 >> /etc/modprobe.d/blacklist-nvidia-nouveau.conf"
-sudo update-initramfs -u
-# Reboot
-sudo reboot
-# Download the run file and run
-# wget https://developer.download.nvidia.com/compute/cuda/11.1.1/local_installers/cuda_11.1.1_455.32.00_linux.run
-sudo sh cuda_11.1.1_455.32.00_linux.run
-```
-Once you are done, you will see something like the following msg with the `nvidia-smi` command.
-```
-+-----------------------------------------------------------------------------+
-| NVIDIA-SMI 455.32.00    Driver Version: 455.32.00    CUDA Version: 11.1     |
-|-------------------------------+----------------------+----------------------+
-| GPU  Name        Persistence-M| Bus-Id        Disp.A | Volatile Uncorr. ECC |
-| Fan  Temp  Perf  Pwr:Usage/Cap|         Memory-Usage | GPU-Util  Compute M. |
-|                               |                      |               MIG M. |
-|===============================+======================+======================|
-|   0  GeForce GTX 105...  Off  | 00000000:01:00.0 Off |                  N/A |
-| N/A   42C    P8    N/A /  N/A |      7MiB /  4040MiB |      0%      Default |
-|                               |                      |                  N/A |
-+-------------------------------+----------------------+----------------------+
-
-+-----------------------------------------------------------------------------+
-| Processes:                                                                  |
-|  GPU   GI   CI        PID   Type   Process name                  GPU Memory |
-|        ID   ID                                                   Usage      |
-|=============================================================================|
-|  No running processes found                                                 |
-+-----------------------------------------------------------------------------+
-
-```
-The final step is to add paths to the Cuda executables and libraries.
-Add these lines to `.bashrc` to include them. You may resource it by `source ~/.bshrc`
-```
-export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}$
-export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
-```
-
-***
 
 ### Clone Repositories
 
@@ -241,7 +264,7 @@ export LD_LIBRARY_PATH=/usr/local/cuda/lib64${LD_LIBRARY_PATH:+:${LD_LIBRARY_PAT
 cd ~/uuv_ws/src
 vcs import --skip-existing --input dave/extras/repos/multibeam_sim.repos .
 ```
-vcs will use `multibeam_sim.repos` file inthe dave repository that includes both `nps_uw_multibeam_sonar` and `hydrographic_msgs`.
+vcs will use `multibeam_sim.repos` file inthe dave repository that includes both `nps_uw_multibeam_sonar` and `marine_msgs`.
 
 ### Option B. Git clone manually
 #### Multibeam sonar plugin repository
@@ -252,9 +275,9 @@ git clone https://github.com/Field-Robotics-Lab/nps_uw_multibeam_sonar.git
 ```
 
 #### Acoustic message repository
-Final results are exported as a [ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg) of UW APL's sonar image msg format. Make sure to include the repository on the workspace before compiling.
+Final results are exported as a [ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/marine_msgs/blob/main/marine_acoustic_msgs/msg/ProjectedSonarImage.msg) of UW APL's sonar image msg format. Make sure to include the repository on the workspace before compiling.
 ```
-git clone https://github.com/apl-ocean-engineering/hydrographic_msgs.git
+git clone https://github.com/apl-ocean-engineering/marine_msgs.git
 ```
 
 
@@ -311,7 +334,7 @@ There are two types of multibeam sonar plugin in the repository. Raster version 
 
 ## Gazebo Coordinate Frames
 
-The plugin outputs sonar data using the [acoustic_msgs/ProjectedSonarImage](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg) ROS message.  This message defines the bearing of each sonar beam as a rotation around a **downward-pointing** axis, such that negative bearings are to port of forward and positive to starboard (if the sonar is installed in it"s "typical" forward-looking orientation).
+The plugin outputs sonar data using the [marine_acoustic_msgs/ProjectedSonarImage](https://github.com/apl-ocean-engineering/marine_msgs/blob/main/marine_acoustic_msgs/msg/ProjectedSonarImage.msg) ROS message.  This message defines the bearing of each sonar beam as a rotation around a **downward-pointing** axis, such that negative bearings are to port of forward and positive to starboard (if the sonar is installed in it"s "typical" forward-looking orientation).
 
 The plugin will use the Gazebo frame name as the `frame_id` in the ROS message. For the sonar data to re-project correctly into 3D space, it **must** be attached to an X-Forward, Y-Starboard, Z-Down frame in Gazebo.
 
@@ -413,8 +436,8 @@ Calculation settings including Ray skips, Max distance, writeLog/interval, Debug
      - Use following `docker cp` command at another terminal window
 
        ```bash
-       docker cp noetic_runtime:/tmp/SonarRawData_000001.csv .
-       docker cp noetic_runtime:/tmp/SonarRawData_beam_angles.csv .
+       docker cp dockwater_noetic_runtime:/tmp/SonarRawData_000001.csv .
+       docker cp dockwater_noetic_runtime:/tmp/SonarRawData_beam_angles.csv .
        ```
 
    - Plotting scripts
@@ -549,7 +572,7 @@ The final output of the sonar image is sent in two types.
   - This is a msg used internally to plot using with `image_view` package of ROS.
   - The data is generated using OpenCV's `CV_8UC1` format, normalized with `cv::NORM_MINMAX`, colorized with `cv::COLORMAP_HOT`, and changed into msg format using `BGR8` format
 - Topic name `sonar_image_raw`
-  - This is a msg matched with [UW APL's ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/hydrographic_msgs/blob/main/acoustic_msgs/msg/ProjectedSonarImage.msg#L5).
+  - This is a msg matched with [UW APL's ProjectedSonarImage.msg](https://github.com/apl-ocean-engineering/marine_msgs/blob/main/marine_acoustic_msgs/msg/ProjectedSonarImage.msg#L5).
   - The data is in `uint8`.
 
 #### Rviz Sonar Image Viewer Plugin

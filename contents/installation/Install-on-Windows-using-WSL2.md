@@ -1,11 +1,19 @@
 ---
-last_modified_date: 13/08/2021
+last_modified_date: 29/11/2023
 layout: default
 title: Install on Windows using WSL2
 nav_exclude: true
 ---
 
+# Overall Process
+We will install WSL on top of Windows and install Ubuntu 22.04 Jammy LTS (which is a default installation of WSL) on top of WSL. In Ubuntu 22.04 Jammy LTS, we will run ROS Noetic, Gazebo 11, UUV Simulator and DAVE on Docker environment (the virtual environment running Ubuntu 20.04 Focal LTS) on top of Ubuntu 22.04 Jammy LTS. 
+
+If you want, you can install Ubuntu 20.04 Focal LTS on top of WSL and install ROS Noetic, Gazebo 11, UUV Simulator and DAVE run directly. But, I recommend docker installation method.
+
 # Enroll in Windows Insider Program (Dev channel) and install WSL2 at Windows
+
+(2023/11/29)
+Currently, WSL Version 2 is fully integrated to the windows 11 and Windows 10 version 21H2 or higher. You don't need to enroll in Windows Insider Program. Just install Windows 11 and enable WSL2.
 
 (2021/7/30)
 Currently, the `beta` channel includes updates what is needed here. the beta channel of windows 10 will be installing Windows 11. For some old hardware, windows 11 cannot be installed ([Windows 11 requirement checker](https://github.com/rcmaehl/WhyNotWin11/releases/latest/download/WhyNotWin11.exe)).
@@ -20,9 +28,9 @@ In order to install Windows 10 build 21364 or higher, you have to enroll in Wind
 
 run Win Logo + R and type 'winver' to check if windows version is above Build 21364. Otherwise, enroll Windows Insider Program and run windows update.
 
-## Install WSL 2 with Ubuntu 20.04 LTS
+## Install WSL 2 with Ubuntu 22.04 LTS
 
-[https://docs.microsoft.com/en-us/windows/wsl/install-win10](https://docs.microsoft.com/en-us/windows/wsl/install-win10)
+[Install WSL on Windows](https://learn.microsoft.com/en-us/windows/wsl/install)
 
 If you already have WSL installed, all you need to do is run wsl --update and you’ll be set to use GUI apps.
 
@@ -36,12 +44,12 @@ README for WSL OpenGL Support : https://github.com/microsoft/wslg
 - [INTEL GPU driver for WSL](https://downloadcenter.intel.com/download/30579/Intel-Graphics-Windows-DCH-Drivers)
 - [AMD GPU driver for WSL](https://community.amd.com/t5/radeon-pro-graphics-blog/announcing-amd-support-for-gpu-accelerated-machine-learning/ba-p/414185)
 
-
-
 ## Install Dave project
 Thanks to the great design of WSL2 system architecture. Just follow ordinary instruction
 
-**Linux Host** [Configure Your Host Machine](/dave.doc/contents/installation/Install-Directly-on-Host): Instructions to install ROS Noetic, Gazebo 11, UUV Simulator and DAVE directly on your Ubuntu 20.04 host machine.
+**Docker** [Use a Docker Image](/dave.doc/contents/installation/Docker-Development-Image): Instructions to install Docker and use a Docker image to build and run DAVE. Utilizing CUDA NVIDIA capability on Docker, you may read [GPU CUDA in WSL](https://learn.microsoft.com/ko-kr/windows/ai/directml/gpu-cuda-in-wsl)
+
+**Linux Host** [Configure Your Host Machine](/dave.doc/contents/installation/Install-Directly-on-Host): Instructions to install ROS Noetic, Gazebo 11, UUV Simulator and DAVE directly on your Ubuntu 20.04 Focal on WSL.
 
 - You may be tempted to git clone repositories at windows hosted directories (e.g. /mnt/c/users). DO NOT. it's painfully slow compared to accessing data inside the local folder (e.g. /home/$USER).
 
@@ -77,5 +85,5 @@ Reference : https://github.com/microsoft/wslg/issues/86
 
 ## Screenshot : Almost 60 fps, comparable to direct Linux host installation
 
-![install_on_wsl_part1](../images/install_on_wsl_part1f.png)
+![install_on_wsl_part1](../images/install_on_wsl_part1.png)
 ![install_on_wsl_part2](../images/install_on_wsl_part2.png)
