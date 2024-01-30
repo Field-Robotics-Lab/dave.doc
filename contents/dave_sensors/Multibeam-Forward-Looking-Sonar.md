@@ -345,20 +345,26 @@ Parameters for the sonar is configured at each `model.sdf` or `urdf/multibeam_so
 
 - Raster version
 
-    Viewport of the sonar is defined using depth camera parameters configuration including FOV, Clip(Range), nBeams, nRays
-    - Field of view (FOV)
+  Viewport of the sonar is defined using depth camera parameters configuration including FOV, Clip(Range), nBeams, nRays
+
+  - Field of view (FOV)
+
     ```xml
     <!-- 90 degrees for the M900-90 -->
     <horizontal_fov>1.57079632679</horizontal_fov>
     ```
-    - Range (clip)
+
+  - Range (clip)
+
     ```xml
     <clip>
       <near>02</near> <!-- optimal 2m-60m -->
       <far>60</far>
     </clip>
     ```
-    - nBeams (width), nRays (height, also act as vertical field of view)
+
+  - nBeams (width), nRays (height, also act as vertical field of view)
+
     ```xml
     <image>
       <width>512</width>
@@ -367,7 +373,8 @@ Parameters for the sonar is configured at each `model.sdf` or `urdf/multibeam_so
       <height>224</height>
     </image>
     ```
-      - Here, the `<height>` is set to define as if 40 deg, which is approximately two times that of the spec sheet. The correct vertical FOV is defined at `<verticalFOV>` below.
+
+    - Here, the `<height>` is set to define as if 40 deg, which is approximately two times that of the spec sheet. The correct vertical FOV is defined at `<verticalFOV>` below.
 
 - GPU Ray version
 
@@ -459,7 +466,8 @@ Calculation settings including Ray skips, Max distance, writeLog/interval, Debug
 ```
 
 - ROS Topic names
-You can also define topic names for sonar image and other data.
+
+  You can also define topic names for sonar image and other data.
 
    - Raster version
 
@@ -541,8 +549,9 @@ Although high fidelity target strength is beyond reach for simple implementation
 ```
 roslaunch nps_uw_multibeam_sonar sonar_tank_oculus_m1200d_nps_multibeam_customSDFTag.launch
 ```
+
 #### How it works
-  - The parameter to switch the feature is defined at `model.sdf` of the sonar model (in this case, `nps_uw_multibeam_sonar/models/blueview_p900_nps_multibeam/model.sdf`. Assining the `<constantReflectivity>` as false and `<customSDFTagReflectivity>` as true will turn the variational reflectivity by the custom Tag feature on.
+- The parameter to switch the feature is defined at `model.sdf` of the sonar model (in this case, `nps_uw_multibeam_sonar/models/blueview_p900_nps_multibeam/model.sdf`. Assining the `<constantReflectivity>` as false and `<customSDFTagReflectivity>` as true will turn the variational reflectivity by the custom Tag feature on.
   - Example tag names and how they are defined
     - ```xml
       <!-- Custom SDF elements for surface properties -->
