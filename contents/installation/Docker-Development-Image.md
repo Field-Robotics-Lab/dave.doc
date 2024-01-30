@@ -8,10 +8,11 @@ parent: Installation
 
 This guide explains how to set up a Docker-based development environment for building and developing Dave repository and related software.
 
-## Step 1: [Install Dependencies]
+## Step 1: Install Dependencies
 Follow these steps to install required utilities on your host system.
 
-### [Install Docker] (https://field-robotics-lab.github.io/dave.doc/contents/installation/System-Requirements/#docker) 
+### Install Docker
+- Follow the instruction in [System Requirements - docker](https://field-robotics-lab.github.io/dave.doc/contents/installation/System-Requirements/#docker) 
 
 ### Install Rocker
 Check pip version with, `pip --version`, if it's based on python version 2, then install pip3 with `sudo apt install python3-pip`
