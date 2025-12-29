@@ -14,13 +14,28 @@ This tutorial will launch a basic tank environment with a 3D lidar sensor mounte
 
 # Prerequisites
 This tutorial assumes you have previously installed the DAVE repositories.
+* Assuming the installation went as planned, you can now run:
+    ```
+    cd ~/uuv_ws/src 
+    git clone https://github.com/Field-Robotics-Lab/nps_uw_sensors_gazebo.git
+    ```
+* Build the source code (If using Docker, below commands should be typed inside the docker environment after `./run.bash dockwater:noetic` or `./run.bash -c dockwater:noetic` )
+    ```
+    cd ~/uuv_ws
+    catkin build
+    ```
+* When the build is finished, source your new `setup.bash`:
+    ```
+    source ~/uuv_ws/devel/setup.bash
+    # Source devel/setup.bash or install/setup.bash depending on whether you used the installation option
+    ```
 * You should be able to run `roslaunch nps_uw_sensors_gazebo uw_lidar_standalone.launch`
 
 # Launch and run the simulation
 * To launch the environment, run:
-```
-roslaunch nps_uw_sensors_gazebo uw_lidar_standalone.launch
-```
+    ```
+    roslaunch nps_uw_sensors_gazebo uw_lidar_standalone.launch
+    ```
 * If all goes well Gazebo should launch into a simulation environment that looks like this:
 
 ![tandalone lidar launch, paused](../images/uw_lidar_launch.png)
