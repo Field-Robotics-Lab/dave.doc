@@ -4,12 +4,14 @@ title: Home
 nav_order: 1
 description: "Project DAVE, a open-source underwater robotics simulation environment. DAVE Aquatic Virtual Environment(DAVE) is a simulation environment to support the rapid testing and evaluation of underwater robotic solutions, specifically underwater vehicles (AUVs/UUVs) operating autonomously and completing missions that involve autonomous maniputlation.  The environment is built upon existing ROS and Gazebo infrastructure, particularly the UUV Simulator and WHOI's ds_sim. Github hosted developed by Fields Robotics Laboratory at Naval Postgraduate School."
 permalink: /
-last_modified_date: 11/04/2022
+last_modified_date: 12/29/2025
 ---
 
 # Project `DAVE`
 
 DAVE Aquatic Virtual Environment(DAVE) is a simulation environment to support the rapid testing and evaluation of underwater robotic solutions, specifically underwater vehicles (AUVs/UUVs) operating autonomously and completing missions that involve autonomous maniputlation.  The environment is built upon existing ROS and Gazebo infrastructure, particularly the [UUV Simulator](https://github.com/uuvsimulator/) and WHOI's [ds_sim](https://bitbucket.org/whoidsl/ds_sim/src/master/).
+
+> **New LTS versions — ROS 2 Jazzy + Gazebo Harmonic at Ubuntu 24.04 :** An ROS 2 / Gazebo (Harmonic) port of DAVE is available at [https://dave-ros2.notion.site](https://dave-ros2.notion.site). The work was supported by Google Summer of Codes 2024 and 2025 by Helena Moyen, Gaurav Kumar, Woen-Sug Choi, and  under the mentorship of Woen-Sug Choi, Mabel Zhang and Rakesh Vivekanandan.
 
 ## Quick Start
 
